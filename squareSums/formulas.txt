@@ -1,0 +1,74 @@
+numbers 1..n add up to Tri(n)
+
+The squares they make add up to 2Tri(n) - (first+last)
+
+If n is even, then split path into pairs of numbers. 
+Call the squares they make the left squares. Sum is also Tri(n).
+The other squares are made by pairing up all but the first and last. 
+Sum of right squares = Tri(n) - (first + last)
+
+if n is odd, then left squares don't include last; sum(left squares) = Tri(n) - last
+and sum(right squares) = Tri(n) - first
+
+NB: 6, 3, 1 makes squares 9, 4
+times by 4, get
+24, 12, 4 making 36 and 16
+also, 5 + 4 = 9 gives not only
+20+16 = 36 but 
+19+17 = 36 and 
+21+15 = 36 where you can consider each number to nearest 4
+
+eg: for 33: (which is odd)
+Tri(33) = 33x17 = 561
+doubled: 1122
+
+path:  '23,26,10,15,1,8,28,21,4,32,17,19,30,6,3,13,12,24,25,11,5,20,29,7,18,31,33,16,9,27,22,14,2',
+squares: '49,36,25,16,9,36,49,25,36,49,36,49,36,9,16,25,36,49,36,16,25,49,36,25,49,64,49,25,36,49,36,16',
+summary: 
+   { '9': 2,     '16': 4,     '25': 6,     '36': 10,     '49': 9,     '64': 1,
+     sumOfSquares: 1097 }, //1122 - (23+2)
+reachableSqs:
+   { '4': 1, '9': 4, '16': 7, '25': 12, '36': 15, '49': 9, '64': 1 },
+
+leftSqs: '49,25,9,49,36,36,36,16,36,36,25,36,49,49,36,36',
+leftSqsSum: 559, // Tri(33) - last
+rightSqs: '36,16,36,25,49,49,9,25,49,16,49,25,64,25,49,16',
+rightSqsSum: 538, // Tri(33) - first
+Difference between these sums is 21 = abs(first - last)
+
+
+eg: for 26 (which is even)
+Tri(26) = 13x27 = 351
+double = 702
+path:       '18,7,2,14,22,3,13,23,26,10,6,19,17,8,1,15,21,4,12,24,25,11,5,20,16,9',
+squares:    '25,9,16,36,25,16,36,49,36,16,25,36,25,9,16,36,25,16,36,49,36,16,25,36,25',
+summary:
+   { '9': 2, '16': 6, '25': 7, '36': 8, '49': 2, 
+   sumOfSquares: 675 }, // 2Tri(26) - 27
+reachableSqs: { '4': 1, '9': 4, '16': 7, '25': 12, '36': 8, '49': 2 },
+  
+leftSqs: '25,16,25,36,36,25,25,16,25,36,36,25,25',
+leftSqsSum: 351,  // Tri(n), because n is even
+rightSqs: '9,36,16,49,16,36,9,36,16,49,16,36',
+rightSqsSum: 324, // Tri(n) - (first+last) because n is even
+Difference between these sums is 27 = first + last
+
+Note Tri(27) = 378      // up 27 from Tri(26)
+sumOfSquares = 756 - (first+last)  // 756 is up 54 from 702
+
+///////////////////////////////////////////////
+
+If sequence of squares is [p, q, r]
+Can make a triple: [p-a, a, q-a] join to another [p-b, b, q-b]
+where q-a + p-b = r so b = p+q-r - a
+note: six numbers make a cycle since q-b+p-a = q+p-a-b = r
+also: a+b = p+q-r
+
+have a third triple: [q-c, c, p-c] with 2q-b-c = t  (another square)
+so c = 2q-t-b = 2q-t-(p+q-r-a) = q+r-(p+t)+a
+And a fourth: [q-d, d, p-d] where p-c+q-d=r
+so d = p+q-r-c = p+q-r-(q+r-p-t+a) = 2p+t-2r-a = t-2(r-p) -a
+
+alt: put a, b at start
+[a, p-a, a+q-p] [b, p-b, b+q-p] = [b, p-b, r-a]
+r = a+b+q-p so b = r+p-q-a
