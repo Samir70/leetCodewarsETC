@@ -1,3 +1,5 @@
+// find singleton in an array where all other values appear atleast twice
+// (if it was guaranteed exactly twice, we could use xor)
 // O(n) for both speed and memory
 const singleNumber = nums => {
     var tally = {};
