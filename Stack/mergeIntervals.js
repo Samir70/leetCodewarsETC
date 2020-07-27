@@ -18,13 +18,15 @@ const mergeIntervals = (arr) => {
     return merged
 }
 
-
+// makes intervals in order, so sort is not needed as first stage. 
+// But these could be shuffled
 const makeIntervals = (n) => {
     const intervals = []
+    var start = Math.floor(Math.random() * 20);
     for (var i = 0; i < n; i++) {
-        var start = Math.floor(Math.random() * 20);
-        var len = Math.floor(Math.random() * 5);
-        intervals.push([start, start + len])
+        var end = start + Math.floor(Math.random() * 15);
+        intervals.push([start, end]);
+        start = end + Math.floor(Math.random() * 5) - 2
     }
     return intervals
 }
