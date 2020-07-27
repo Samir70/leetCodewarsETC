@@ -33,28 +33,19 @@ const longestBalanced = arr => {
 }
 
 const longestBalanced2 = arr => {
-    const diffs = {'0':-1};
-    var zeroCount = 0, oneCount = 0;
-    var current = 0;
-    var globalMax = 0;
-    while (current < arr.length) {
-        if (arr[current] === 0) {
-            zeroCount++
+    var history = { 0: -1 }
+    var diff = 0;
+    var longestFound = 0;
+    arr.forEach((n, i) => {
+        if (n === 1) { diff++ } else { diff-- }
+        if (history[diff]) {
+            found = i - history[diff];
+            if (found > longestFound) {longestFound = found}
         } else {
-            oneCount++
+            history[diff] = i
         }
-        var diff = oneCount - zeroCount;
-        // console.log(arr.slice(0, current+1).join(''), diff, oneCount, zeroCount)
-        if (diffs[diff] === undefined) {
-            diffs[diff] = current
-        } else {
-            var localMax = current - diffs[diff];
-            globalMax = Math.max(globalMax, localMax)
-        }
-        current++
-    }
-    // console.log(diffs)
-    return globalMax
+    });
+    return longestFound
 }
 
 const tests = [
@@ -62,5 +53,5 @@ const tests = [
 ].map(x => x.toString(2)).concat(['01']).map(x => x.split('').map(Number));
 
 tests.forEach(t => {
-    console.log(t, 'dow they match?:', longestBalanced(t) === longestBalanced2(t))
+    console.log(t, 'do they match?:', longestBalanced(t) === longestBalanced2(t))
 });
