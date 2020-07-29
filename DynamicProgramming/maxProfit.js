@@ -59,6 +59,16 @@ const maxProfitLinear = prices => {
     return bestSoFar
 }
 
+const maxProfitL2 = prices => {
+    if (prices.length < 2) {return 0}
+    var maxProfit = 0, minBuy = prices[0];
+    for (var p of prices) {
+        maxProfit = Math.max(maxProfit, p-minBuy);
+        minBuy = Math.min(minBuy, p)
+    }
+    return maxProfit
+}
+
 const tests = [
     { in: [7, 1, 5, 3, 6, 4], out: 5 },
     { in: [7, 2, 5, 3, 6, 4, 1, 3], out: 4 },
@@ -68,7 +78,7 @@ const tests = [
 
 tests.forEach(t => {
     memo = {}
-    console.log(maxProfitBrute(t.in), maxProfitLinear(t.in))
+    console.log(maxProfitBrute(t.in), maxProfitL2(t.in))
 })
 // console.log(memo)
 var rndTest = []
@@ -76,5 +86,6 @@ for (var i = 0; i < 20000; i++) {
     rndTest.push(Math.floor(Math.random() * 300000) + 1)
 }
 console.log(maxProfitLinear(rndTest))
+console.log(maxProfitL2(rndTest))
 console.log(maxProfitBrute(rndTest))
 // console.log(maxProfitRecursive(rndTest))
