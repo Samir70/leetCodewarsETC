@@ -12,7 +12,7 @@ const levelOrder = root => {
         if (current.node.right !== null) {stack.push({node:current.node.right, level:current.level + 1})}
         if (current.node.left !== null)  {stack.push({node:current.node.left, level:current.level + 1})}
     }
-    return out.reverse()
+    return out
 }
 
 console.log(levelOrder(trees.treeC))
