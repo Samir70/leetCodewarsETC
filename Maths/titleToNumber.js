@@ -1,4 +1,4 @@
-var titleToNumber = function (s) {
+var titleToNumber1 = function (s) {
     var out = 0, power = 1;
     var alph = "@ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     var i = s.length - 1;
@@ -11,6 +11,17 @@ var titleToNumber = function (s) {
     }
     return out
 };
+
+const titleToNumber = s => {
+    var out = 0;
+    var shift = 'A'.charCodeAt(0) - 1;
+    var i = 0;
+    while (i < s.length) {
+        out = out*26 + s[i].charCodeAt(0) - shift
+        i++
+    }
+    return out
+}
 
 const tests = [
     { in: "A", out: 1 },
