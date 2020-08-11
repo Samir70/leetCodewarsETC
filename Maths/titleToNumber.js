@@ -23,8 +23,18 @@ const titleToNumber = s => {
     return out
 }
 
+var convertToTitle = function(n) {
+    var div = Math.floor(n/26), rem = n%26;
+    if (rem === 0) {rem = 26; div--}
+    var capA = 'A'.charCodeAt(0) - 1
+    // console.log(n, div, rem)
+    if (div === 0) {return String.fromCharCode(capA+rem)}
+    return convertToTitle(div)+String.fromCharCode(capA+rem)
+};
+
 const tests = [
     { in: "A", out: 1 },
+    { in: "Z", out: 26 },
     { in: "AB", out: 28 },
     { in: "ZY", out: 701 },
     { in: "ZZZ", out: 18278 },
@@ -33,5 +43,6 @@ const tests = [
     { in: "FXSHRXW", out: 2147483647 }
 ];
 tests.forEach((t, i) => console.log(
-    t.in, '->', titleToNumber(t.in), 'should be', t.out
+    t.in, '->', titleToNumber(t.in), 'should be',
+    t.out, '<-', convertToTitle(t.out)
 ))
