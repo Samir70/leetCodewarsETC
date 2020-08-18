@@ -28,28 +28,46 @@ var findTargetSumWays = function(nums, S) {
 */
 
 
-var memo = {}
+// var memo = {}
+// var findTargetSumWays = function (nums, s) {
+//     let token = nums.join(',') + '->' + s;
+//     if (memo[token] !== undefined) { return memo[token] }
+//     console.log('looking for', s, 'in', nums)
+//     if (nums.length === 1) {
+//         if (s===0 && nums[0] === 0) {return 2}
+//         return nums[0] === s || nums[0] === -s ? 1 : 0
+//     }
+//     let smaller = nums.slice(0, -1), last = nums[nums.length - 1];
+//     memo[token] = findTargetSumWays(smaller, s + last) + findTargetSumWays(smaller, s - last);
+//     console.log(token, '->', memo[token])
+//     return memo[token]
+// };
 var findTargetSumWays = function (nums, s) {
-    let token = nums.join(',') + '->' + s;
+  var memo = {}
+  const helper = (nums, s, i) => {
+    let token = i + '->' + s;
     if (memo[token] !== undefined) { return memo[token] }
-    console.log('looking for', s, 'in', nums)
-    if (nums.length === 1) {
-        if (s===0 && nums[0] === 0) {return 2}
-        return nums[0] === s || nums[0] === -s ? 1 : 0
+    // console.log('looking for', s, 'in', nums, 'up to', i)
+    if (i === 0) {
+      if (s === 0 && nums[0] === 0) { return 2 }
+      return nums[0] === s || nums[0] === -s ? 1 : 0
     }
-    let smaller = nums.slice(0, -1), last = nums[nums.length - 1];
-    memo[token] = findTargetSumWays(smaller, s + last) + findTargetSumWays(smaller, s - last);
-    console.log(token, '->', memo[token])
+    memo[token] = helper(nums, s + nums[i], i - 1) + helper(nums, s - nums[i], i - 1);
+    // console.log(token, '->', memo[token])
     return memo[token]
-};
+  };
+  return helper(nums, s, nums.length - 1)
+}
 
 const tests = [
-    // { nums: [1, 1, 1, 1, 1], s: 3, out: 5 },
-    // { nums: [1, 1, 1, 1], s: 2, out: 4 },
-    // { nums: [2, 3, 1, 4, 5], s: 1, out: 3 },
-    { nums: [0, 0, 0, 0, 0, 0, 0, 0, 1], s: 1, out: 256 }
+  { nums: [1, 1, 1, 1, 1], s: 3, out: 5 },
+  { nums: [1, 1, 1, 1], s: 2, out: 4 },
+  { nums: [2, 3, 1, 4, 5], s: 1, out: 3 },
+  { nums: [0, 1], s: 1, out: 2 },
+  { nums: [0, 0, 0, 0, 0, 0, 0, 0, 1], s: 1, out: 256 },
+  { nums: [0, 0, 0, 0, 0, 0, 1], s: 1, out: 64 }
 ];
 
 tests.forEach((t, i) => console.log(
-    'tests', i, findTargetSumWays(t.nums, t.s), 'should be', t.out
+  'tests', i, findTargetSumWays(t.nums, t.s), 'should be', t.out
 ))
