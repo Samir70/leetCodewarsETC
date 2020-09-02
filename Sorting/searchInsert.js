@@ -17,6 +17,20 @@ var binSearchInsert = (nums, target) => {
     return low
 }
 
+// since we are told there will be no duplicates, this also works:
+var searchInsert2 = function(nums, target) {
+    let left = 0, right = nums.length;
+    while (left < right) {
+        let mid = left + Math.floor((right - left)/2);
+        if (nums[mid] < target) {
+            left = mid+1
+        } else {
+            right = mid
+        }
+    }
+    return left
+};
+
 var tests = [
     {nums:[1, 3, 5, 6], target:5, out: 2},
     {nums:[1, 3, 5, 6], target:7, out: 4},
