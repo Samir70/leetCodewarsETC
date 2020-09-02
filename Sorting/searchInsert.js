@@ -1,8 +1,15 @@
+//62ms
 var searchInsert = function(nums, target) {
     var i = nums.findIndex(x => x>=target)
     return i === -1 ? nums.length : i
 };
 
+// 72ms
+var searchInsert = function(nums, target) {
+    return nums.filter(n => n < target).length
+};
+
+// 62ms
 var binSearchInsert = (nums, target) => {
     var low = 0, high = nums.length - 1
     while (low<=high) {
@@ -17,7 +24,7 @@ var binSearchInsert = (nums, target) => {
     return low
 }
 
-// since we are told there will be no duplicates, this also works:
+// since we are told there will be no duplicates, this also works (88ms):
 var searchInsert2 = function(nums, target) {
     let left = 0, right = nums.length;
     while (left < right) {
