@@ -1,31 +1,26 @@
-const floodFill = (image, sr, sc, newColor) => {
-    const beenTo = [];
-    const originalColor = image[sr][sc];
-    const queue = [[sr, sc]];
-    const directions = [
-        // above, below, left, right
-        [-1, 0], [1, 0], [0, -1], [0, 1]
-    ];
-    while (queue.length > 0) {
-        var point = queue.shift();
-        beenTo.push(point.join(','));
-        console.log('handling square: ', point);
-        image[point[0]][point[1]] = newColor;
-        directions.forEach(d => {
-            const row = point[0]+d[0], col = point[1]+d[1];
-            console.log('considering', [row, col].join(','))
-            if (image[row] !== undefined) {
-                if (!beenTo.includes([row, col].join(','))) {
-                    if (image[row][col] === originalColor) {
-                        queue.push([row, col]);
-                        console.log('added', [row, col].join(','))
-                    }
+// testcase where newColour was the same as the original color caused an infinite loop
+// First version used beenTo to keep track of squares visited and so avoid an infinite loop, 
+// but far easier to check for this condition and just return image if there is nothing to do:
+
+var floodFill = function(image, sr, sc, newColor) {
+    let originalColour = image[sr][sc];
+    if (originalColour === newColor) {return image}
+    let stack = [[sr, sc]];
+    let dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+    while (stack.length > 0) {
+        let point = stack.pop();
+        let nextSteps = dirs.map(d => [d[0]+point[0], d[1]+point[1]]);
+        nextSteps.forEach(s => {
+            if (s[0] >= 0 && s[0] < image.length && s[1] >=0 && s[1] < image[0].length) {
+                if (image[s[0]][s[1]] === originalColour) {
+                    stack.push(s)
                 }
             }
-        });
+        })
+        image[point[0]][point[1]] = newColor
     }
     return image
-}
+};
 
 const tests = [
     { image: [[1,1,1],[1,1,0],[1,0,1]], sr: 1, sc: 1, newColor: 2,
