@@ -1,4 +1,5 @@
-var frequencySort = function (s) {
+// took 232ms, it sorts the input string which can be long
+var frequencySortSlow = function (s) {
     var tally = {}
     for (var c of s) {
         tally[c] = (tally[c] || 0) + 1
@@ -10,6 +11,25 @@ var frequencySort = function (s) {
 };
 // return [...s].sort((a, b) => 
 // tally[a] === tally[b] ? b.charCodeAt(0) - a.charCodeAt(0) : tally[b] - tally[a]).join('')
+
+// sorting the tallys' keys is faster
+// 88ms beats 92%
+var frequencySort = function(s) {
+    let tally = {}
+    for (let c of s) {
+        if (tally[c] === undefined) {
+            tally[c] = 1
+        } else {
+            tally[c]++
+        }
+    }
+    let sorted = Object.keys(tally).sort((a, b) => tally[b] - tally[a])
+    let out = ''
+    for (let c of sorted) {
+        out += c.repeat(tally[c])
+    }
+    return out
+};
 
 const tests = [
     { in: "tree", out: "eetr" },
