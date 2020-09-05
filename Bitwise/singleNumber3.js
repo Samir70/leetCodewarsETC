@@ -50,3 +50,14 @@ const singleNumber = nums => {
     return [a, b]
 }
 // NB only need the first set since b = xor^a 
+
+// I thought this would be faster but it was slower:
+var singleNumber = function(nums) {
+    let xorOfAll = nums.reduce((a, c) => a^c, 0);
+    let rightmost = xorOfAll & (~xorOfAll + 1);
+    let firstNum = 0;
+    for (let n of nums) {
+        if (n & rightmost) { firstNum = firstNum ^ n}
+    }
+    return [firstNum, xorOfAll^firstNum]
+};
