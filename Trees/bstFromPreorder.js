@@ -35,25 +35,30 @@ const bstFromPreorder2 = (arr) => {
     return root
 }
 
-const bstFromPreorder3 = arr => {
-    var root = new TreeNode(arr[0])
-    var p = 1;
-    var stack = [root];
-    while (p<arr.length) {
-        var c = stack.pop();
-        if (c.val < arr[p]) {
-            while (stack.length > 0 && c.val < arr[p]) {c = stack.pop()}
-            c.right = new TreeNode(arr[p]);
-            stack.push(c.right)
+// a little slower, 88ms
+var bstFromPreorder3 = function(preorder) {
+    if (preorder.length === 0) {return null}
+    let root = new TreeNode(preorder[0]);
+    let stack = [root];
+    let p = 1;
+    while (p < preorder.length) {
+        let cur = stack.pop();
+        let newVal = preorder[p]
+        if (newVal < cur.val) {
+            cur.left = new TreeNode(newVal)
+            stack.push(cur);
+            stack.push(cur.left)
         } else {
-            c.left = new TreeNode(arr[p]);
-            stack.push(c)
-            stack.push(c.left)
+            while (stack.length > 0 && stack[stack.length - 1].val < newVal) {
+                cur = stack.pop()
+            }
+            cur.right = new TreeNode(newVal);
+            stack.push(cur.right)
         }
         p++
     }
     return root
-}
+};
 
 
 const tests = [
