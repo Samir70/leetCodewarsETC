@@ -6,7 +6,7 @@
  *     this.right = (right===undefined ? null : right)
  * }
  */
-
+// 68ms
 var invertTree = function(root) {
     if (root === null) {return null}
     var temp = root.left === null ? null : invertTree(root.left);
@@ -14,6 +14,19 @@ var invertTree = function(root) {
     root.right = temp
     return root
 };
+
+/*
+The above was faster than guaranteeing a call to invert tree for left/right being null
+But not by much.
+This was 72ms
+var invertTree = function(root) {
+    if (root === null) {return null}
+    let temp = invertTree(root.right)
+    root.right = invertTree(root.left)
+    root.left = temp
+    return root
+};
+*/
 
 // via Leetcode
 var invertTree2 = function(root) {
