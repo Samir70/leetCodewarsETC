@@ -1,9 +1,39 @@
 /*
 create a k-digit number from two lists, but output should maintain relative order from input lists
 */
-
+// works for k small enough that you don't place the last digit of both lists
 var maxNumber = function(nums1, nums2, k) {
-    
+    let out = [];
+    let used1 = -1, used2 = -1;
+    // not sure how to use these
+    let placed1 = Array(nums1.length);
+    let placed2 = Array(nums2.length);
+    while (used1 < nums1.length - 1 || used2 < nums2.length - 1) {
+        let left = Math.max(...nums1.slice(used1+1), -Infinity);
+        let right = Math.max(...nums2.slice(used2+1), -Infinity);
+        if (left > right) {
+            let i = used1+1
+            used1 = nums1.indexOf(left);
+            nums1[used1] *= -10;
+            while (i < used1) {
+                nums1[i] *= -1;
+                i++
+            }
+            out.push(left)
+        } else {
+            let i = used2+1
+            used2 = nums2.indexOf(right);
+            nums2[used2] *= -10;
+            while (i < used2) {
+                nums2[i] *= -1;
+                i++
+            }
+            out.push(right)
+        }
+        if (out.length === k) {return out}
+        console.log(out, nums1, nums2)
+    }
+    return out
 };
 
 
