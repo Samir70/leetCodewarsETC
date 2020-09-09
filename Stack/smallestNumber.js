@@ -1,38 +1,3 @@
-
-// const removeKDigits = (num, k) => {
-//     if (num==='') {return "0"}
-//     if (num.length === k) {return "0"}
-//     if (k === 0) {return num}
-//     var a = num[0], b = num[1], rest = num.slice(2).replace(/^0+/, '');
-//     if (b==="0") {return removeKDigits(rest, k-1)}
-//     return a<b ? removeKDigits(a+rest, k-1) : removeKDigits(b+rest, k-1)
-// }
-// *************************?
-// const removeKDigits = (num, k) => {
-//     if (num.length === k) {return "0"}
-//     if (k === 0) {return num}
-//     console.log("numlength", num.length, num.slice(0, 20))
-//     var removeNth = (arr, n) => {
-//         arr[n] = "delete";
-//         return arr.filter(x => x!=="delete")
-//     }
-//     var allPoss = Array(num.length).fill(0)
-//         .map((x, i) => removeNth([...num], i).join(''))
-//         .map(Number);
-//     // console.log(allPoss);
-//     const smallest = Math.min(...allPoss); // is infinity for very large numbers
-//     console.log('smallest', smallest, 'allPoss.length', allPoss.length, allPoss[0]<)
-//     return smallest //removeKDigits(''+smallest, k-1)
-// }
-
-// via willey
-// This is the key algorithm, so study it carefully. 
-// If you want more practice, check out Merge Intervals and Sliding Window Maximum, 
-// which use the same technique. Notice that out is ALWAYS increasing (i.e. sorted), 
-// since there are no pairs that are decreasing. 
-// This is called a monotonic stack/queue, and is a very important concept.
-
-
 const removeKDigits = (num, k) => {
     if (num.length === k ) {return "0"}
     var answer = [];
