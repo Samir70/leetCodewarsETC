@@ -42,6 +42,7 @@ const invert = root => {
     while (stack.length>0) {
         var c = stack.pop();
         [c.left, c.right] = [c.right, c.left];
+        // this way to swap did not work on leetCode, had to use temp = L; L = R; R = temp
         if (c.left !== null) {stack.push(c.left)}
         if (c.right !== null) {stack.push(c.right)}
     }
