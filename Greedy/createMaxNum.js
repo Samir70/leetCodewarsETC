@@ -36,6 +36,13 @@ var maxNumber = function(nums1, nums2, k) {
     return out
 };
 
+/*
+From ihatevirus on leetcode
+Step1: Create maximum numbers of every length individually from nums1 and nums2. 
+(easier to work out max for numbers of length k..1)
+Step2: Combine dp1[i] + dp2[k-i] to create maximum 'k' digit number
+*/
+
 
 const tests = [
   {nums1 : [3, 4, 6, 5], nums2: [9, 1, 2, 5, 8, 3], k: 5, out:[9, 8, 6, 5, 3]}, 
