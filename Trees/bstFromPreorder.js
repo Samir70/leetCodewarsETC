@@ -5,6 +5,7 @@ function TreeNode(val, left, right) {
     this.right = (right === undefined ? null : right)
 }
 
+// mine wasn't, but fastest on leetcode is also recursive
 const bstFromPreorder = (arr) => {
     if (arr.length === 0) { return null }
     if (arr.length === 1) { return new TreeNode(arr[0])}
@@ -12,9 +13,22 @@ const bstFromPreorder = (arr) => {
     const right = arr.filter(x => x>arr[0]);
     return new TreeNode(arr[0], bstFromPreorder(left), bstFromPreorder(right))
 }
+/**
+ * fastest worded:
+ * var bstFromPreorder = function(preorder) {
+    if(!preorder || !preorder.length) return null;
+    if(preorder.length==1) return new TreeNode(preorder[0]);
+    
+    let root=new TreeNode(preorder[0]);
+    root.left=bstFromPreorder(preorder.filter(p=>p<root.val));
+    root.right=bstFromPreorder(preorder.filter(p=>p>root.val));
+    
+    return root;
+};
+ */
+
 
 // iterative, with stack
-
 const bstFromPreorder2 = (arr) => {
     if (arr.length === 0) {return null}
     var root = new TreeNode(arr[0]);
@@ -59,6 +73,40 @@ var bstFromPreorder3 = function(preorder) {
     }
     return root
 };
+
+// further research:
+// https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/discuss/252232/JavaC%2B%2BPython-O(N)-Solution
+
+/**
+ * 64ms via leetcode:
+ * var bstFromPreorder = function(preorder) {
+    if (!preorder.length) {
+        return null;
+    }
+    
+    let preIndex = 0;
+    
+    return rdeserialize(-Infinity, Infinity);
+    
+    function rdeserialize(lower, upper) {
+        if (preIndex === preorder.length) {
+            return null;
+        }
+        
+        const val = preorder[preIndex];
+        
+        if (val < lower || val > upper) {
+            return null;
+        }
+        
+        preIndex++;
+        const node = new TreeNode(val);
+        node.left = rdeserialize(lower, val);
+        node.right = rdeserialize(val, upper);
+        return node;
+    }
+};
+ */
 
 
 const tests = [
