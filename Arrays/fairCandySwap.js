@@ -1,33 +1,30 @@
-var fairCandySwap = function(A, B) {
-    let sumA = A.reduce((a, b) => a+b, 0);
-    let sumB = B.reduce((a, b) => a+b, 0);
-    let diff = Math.abs(sumA-sumB)
-    if (diff % 2 === 1) {return null}
+const fairCandySwap = (alice, bob) => {
+    let sumA = alice.reduce((a, b) => a + b, 0);
+    let sumB = bob.reduce((a, b) => a + b, 0);
+    let diff = sumA - sumB
+    if (diff % 2 === 1) { return null }
     diff /= 2;
     console.log(diff)
-    let setB = new Set(B);
-    for (let a of A) {
-        if (setB.has(a - diff)){
-            return [a, a - diff]
+    let setB = new Set(bob);
+    let setA = new Set(alice);
+    if (diff < 0) {
+        for (let a of alice) {
+            if (setB.has(a-diff)) {return [a, a-diff]}
+        }
+    } else {
+        for (let b of bob) {
+            if (setA.has(b+diff)) {return [b+diff, b]}
         }
     }
-    let setA = new Set(A);
-    for (let b of B) {
-        if (setA.has(b - diff)){
-            return [b - diff, b]
-        }
-    }
-    return [0,0]
+    return [0, 0]
 };
 
-passes:
-[1,1]
-[2,2]
+const tests = [
+    { alice: [1, 1], bob: [2, 2], out: [1, 2] },
+    { alice: [1, 2, 5], bob: [2, 4], out: [5, 4] },
+    { alice: [2], bob: [1, 3], out: [2, 3] }
+]
 
-and
-[1,2,5]
-[2,4]
-
-fails
-[2]
-[1,3]
+tests.forEach((t, i) => console.log(
+    'test', i, fairCandySwap(t.alice, t.bob), 'should be', t.out
+));
