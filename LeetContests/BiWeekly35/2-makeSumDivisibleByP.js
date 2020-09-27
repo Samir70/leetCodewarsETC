@@ -41,7 +41,7 @@ const tests = [
     { nums: [1, 2, 3], p: 3, out: 0 },
     { nums: [1, 2, 3], p: 7, out: -1 },
     { nums: [26, 19, 11, 14, 18, 4, 7, 1, 30, 23, 19, 8, 10, 6, 26, 3], p: 26, out: 3 },
-    { nums: bigArr.bigArray, p: 19, out: 5 }
+    { nums: bigArr.bigArray, p: 19, out: 1 }
 ];
 
 tests.forEach((t, i) => console.log(
