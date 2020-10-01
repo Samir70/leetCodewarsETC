@@ -49,4 +49,13 @@ const inorder2 = (t) => {
     return out
 }
 
+//recursive
+// faster versions use concat at the end and have a helper function which is called over and over.
+var inorderTravRec = function(root) {
+    if (root === null) {return []}
+    let l = inorderTraversal(root.left);
+    let r = inorderTraversal(root.right);
+    return [...l, root.val, ...r ]
+};
+
 console.log(inorderTraversal(trees.treeC))
