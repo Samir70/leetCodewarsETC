@@ -1,5 +1,16 @@
+/**
+ *  edge case: have to remove every digit => return '0'
+ *  for every digit of num:
+ *      if it is less than the last digit in ans, then pop the last digit of ans; k--
+ *  be careful not to delete more than k digits or to try to remove from empty array
+ * 
+ *  if k>0: remove more digits
+ *  remove useless 0's at start of numbers
+ *  return '0' if no digits left
+ */
+
 const removeKDigits = (num, k) => {
-    if (num.length === k ) {return "0"}
+    if (num.length <= k ) {return "0"}
     var answer = [];
     for (var i=0; i<num.length; i++) {
         while (k>0 && answer.length > 0 && answer[answer.length - 1] > num[i]) {
