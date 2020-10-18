@@ -4,7 +4,7 @@ Biweekly 28
 
 Biweekly 29
 -- Got all but 4th
--- rating not changed since contest was considered null due to badly test cases in Q4
+-- rating not changed since contest was considered null due to bad test cases in Q4
 
 Biweekly 30
 -- got all but Q2
@@ -21,7 +21,17 @@ Biweekly 32
 
 BiWeekly 33
 -- Only got first 3
--- Rating to 1694
+-- Rating to 1695
 
 BiWeekly 34
 -- missed it due to MOT
+
+Biweekly 35
+-- missed it due to ??
+
+Biweekly 36
+-- Qs 1, 2 = 2249 / 8332
+-- rating 1693
+
+Biweekly 37 
+-- Qs 1, 2, 4 = 104 / 8250
