@@ -1,0 +1,4 @@
+Did 1561
+https://leetcode.com/problems/maximum-number-of-coins-you-can-get/ 
+Just use a greedy strategy. 
+Put this into the notJS list -- easy to think about, good for gettting used to other languages.
