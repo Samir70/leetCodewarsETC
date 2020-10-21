@@ -35,3 +35,4 @@ Biweekly 36
 
 Biweekly 37 
 -- Qs 1, 2, 4 = 104 / 8250
+-- rating 1807, rank = 7712
