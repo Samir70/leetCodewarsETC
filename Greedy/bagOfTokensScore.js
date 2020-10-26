@@ -22,23 +22,52 @@ const bagOfTokensScore1 = (tokens, power) => {
 }
 
 // There needs to be a better way
-const bagOfTokensScore = (tokens, power) => {
-    if (tokens.length === 0) {return 0};
-    tokens.sort((a, b) => a-b);
-    let score = 1;
-    tokens.push(power)
-    while (tokens.length > 0) {
-        let toSpend = tokens.pop();
-        score--;
+const bagOfTokensScore2 = (tokens, power) => {
+    tokens.sort((a, b) => a - b);
+    let score = 0, maxScore = 0;
+    let low = 0, high = tokens.length-1;
+    while (low <= high) {
+        if (power >= tokens[low]) {
+            power -= tokens[low];
+            low++;
+            score++;
+            maxScore = Math.max(maxScore, score)
+        } else if (score > 0) {
+            power += tokens[high]
+            score--;
+            high--;
+        } else {return maxScore}
     }
     return maxScore
+}
+
+// beating nearly 95%
+const bagOfTokensScore = (tokens, power) => {
+    tokens.sort((a, b) => a - b);
+    let score = 0;
+    let low = 0, high = tokens.length-1;
+    while (low <= high) {
+        if (power < tokens[low]) {return score}
+        while (low <= high && power >= tokens[low]) {
+            power -= tokens[low];
+            low++;
+            score++;
+        } 
+        if (low < high && score > 0) {
+            power += tokens[high]
+            score--;
+            high--;
+        } 
+    }
+    return score
 }
 
 const tests = [
     { tokens: [100], p: 50, out: 0 },
     { tokens: [100, 200], p: 150, out: 1 },
     { tokens: [100, 200, 300, 400], p: 200, out: 2 },
-    { tokens: [], p: 85, out: 0 }
+    { tokens: [], p: 85, out: 0 },
+    { tokens: [71, 55, 82], p: 54, out: 0 }
 ];
 
 tests.forEach((t, i) => console.log(
