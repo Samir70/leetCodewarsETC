@@ -24,3 +24,19 @@ var intToRoman = function(num) {
     }
     return out
 };
+
+var romanToInt = function(s) {
+    let num = 0
+    while (s !== '') {
+        for (let pair of pairs) {
+            while (s.startsWith(pair[1])) {
+                s = s.slice(pair[1].length);
+                num += pair[0]
+            } 
+        }
+    }
+    return num
+};
+
+let num = 10099;
+console.log(num, romanToInt(intToRoman(num)))
