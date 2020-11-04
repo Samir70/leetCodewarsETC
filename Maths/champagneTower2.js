@@ -16,7 +16,7 @@
 
 // simulate by keeping track of how much flows through each glass
 // eg: 10 in top then 4.5 through each on next rwo
-const champagneTower = (poured, row, glass) => {
+const champagneTower1 = (poured, row, glass) => {
     // if (row === 0) {return poured > 0 ? 1 : 0}
     let r = 0;
     let flowThru = [poured];
@@ -30,6 +30,24 @@ const champagneTower = (poured, row, glass) => {
         flowThru = nextRowFlow;
         // console.log(r, flowThru)
         r++
+    }
+    return Math.min(flowThru[glass], 1)
+}
+
+const champagneTower = (poured, row, glass) => {
+    let r = 0;
+    let flowThru = [poured]
+    let blank = Array(101).fill(0);
+    while (r < row) {
+        let nextRowFlow = [...blank]
+        for (let g = 0; g<r+1; g++) {
+            let overflow = Math.max((flowThru[g] - 1) / 2, 0);
+            nextRowFlow[g] += overflow;
+            nextRowFlow[g+1] += overflow;
+        }
+        flowThru = nextRowFlow;
+        r++
+        // console.log(r, flowThru.slice(0, 10))
     }
     return Math.min(flowThru[glass], 1)
 }
