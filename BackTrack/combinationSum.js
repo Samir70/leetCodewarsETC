@@ -1,27 +1,27 @@
 // 240ms; beats 8%
-var combinationSum = function (candidates, target) {
+// used hash = {}
+
+// faster 216ms, with map but still only beats 8%
+var combinationSum = function(candidates, target) {
     let combinations = [];
-    let hash = {}
+    let hash = new Map();
     const complete = (soFar, sumOfSoFar) => {
-        if (sumOfSoFar > target) { return null }
+        if (sumOfSoFar > target) {return null}
         if (sumOfSoFar === target) {
-            let key = soFar.sort((a, b) => a - b).join(',');
-            if (hash[key] !== 'found') {
-                hash[key] = 'found';
-                combinations.push(soFar.sort((a, b) => a - b));
+            let key = soFar.sort((a, b) => a-b).join(',');
+            if (!hash.has(key)) {
+                combinations.push(soFar);
+                hash.set(key, 'could be anything!')
             }
             return null
         }
-        candidates.forEach(c => {
-            complete([...soFar, c], sumOfSoFar + c)
-        })
-        return null
+        for (let c of candidates) {
+            complete([...soFar, c], sumOfSoFar+c)
+        }
     }
-
-    candidates.forEach(c => {
+    for (let c of candidates) {
         complete([c], c)
-    });
-
+    }
     return combinations
 };
 
