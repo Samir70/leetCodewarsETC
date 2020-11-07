@@ -1,4 +1,4 @@
-var addBinary = function (a, b) {
+var addBinary1 = function (a, b) {
     var i = a.length - 1;
     var j = b.length - 1;
     var out = '', carry = '0';
@@ -16,6 +16,25 @@ var addBinary = function (a, b) {
         var digitA = a[i] === undefined ? '0' : a[i]
         var digitB = b[j] === undefined ? '0' : b[j]
         var sum = sumOf3[digitA+digitB+carry]
+        carry = sum[0];
+        out = sum[1] + out
+        i--; j--;
+    }
+    if (carry === '1') { out = carry + out }
+    return out
+};
+
+var addBinary = function (a, b) {
+    var i = a.length - 1;
+    var j = b.length - 1;
+    var out = '', carry = '0';
+    const sumDigits = (x, y, c) => {
+        let m = x === undefined ? 0 : Number(x)
+        let n = y === undefined ? 0 : Number(y)
+        return ['00', '01', '10', '11'][m+n+Number(c)]
+    }
+    while (i >=0 || j >=0) {
+        var sum = sumDigits(a[i], b[j], carry)
         carry = sum[0];
         out = sum[1] + out
         i--; j--;
