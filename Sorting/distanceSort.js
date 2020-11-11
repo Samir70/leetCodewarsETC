@@ -13,6 +13,7 @@ const kClosest = (arr, k) => {
  * 
  * 
  * alt: consider a min heap / prioroty queue
+ * but for large k, this will be like sorting the array
  * 
  */
 const rndInt = n => Math.floor(Math.random() * n);
