@@ -31,6 +31,9 @@ var frequencySort = function(s) {
     return out
 };
 
+// consider ajna's
+// https://leetcode.com/problems/sort-characters-by-frequency/discuss/786374/C%2B%2B-Frequency-Map-based-vs-Array-Solutions-Compared-and-Explained-~100-Time-~100-Space
+
 const tests = [
     { in: "tree", out: "eetr" },
     { in: "what happens if there's a space?", out: "     aaaaeeeeppphhhsssttnwifr'c?" },
