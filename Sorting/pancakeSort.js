@@ -17,7 +17,7 @@ const pancakeSort = arr => {
         // continue with 2, 3, 4...
         let step1 = cur.indexOf(i + 1) + 1, step2 = len - i;
         // if number is already in the right position, don't add anything
-        if (step1 !== step2) { 
+        if (step1 !== step2) {
             let left = cur.slice(0, step1).reverse(), right = cur.slice(step1);
             cur = [...left, ...right];
             left = cur.slice(0, step2).reverse(), right = cur.slice(step2);
@@ -31,10 +31,13 @@ const pancakeSort = arr => {
     return steps
 }
 
+// O(n) solution involves swapping elements
+// https://leetcode.com/problems/pancake-sorting/discuss/494417/Dew-It-or-True-O(n)-or-Explained-with-Diagrams
+
 const tests = [
     { in: [3, 2, 4, 1], out: [2, 3, 4] },
     { in: [1, 2, 3], out: [] },
-    {in:[5,6,1,3,2,4], out:[3, 6, 2, 5, 3, 4, 1, 3, 1, 2, 6]}
+    { in: [5, 6, 1, 3, 2, 4], out: [3, 6, 2, 5, 3, 4, 1, 3, 1, 2, 6] }
 ];
 
 
