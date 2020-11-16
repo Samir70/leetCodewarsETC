@@ -2,3 +2,11 @@ Did 1561
 https://leetcode.com/problems/maximum-number-of-coins-you-can-get/ 
 Just use a greedy strategy. 
 Put this into the notJS list -- easy to think about, good for gettting used to other languages.
+
+https://leetcode.com/problems/minimum-size-subarray-sum/
+just used left and right pointers to ends of subarray, 
+making it bigger if sum was too low
+smaller if sum was big enough
+and keeping track of the shortest that was big enough
+take care for minLen being 1, especially the first element.
+-- alt: use cumulative sum, but above is faster
