@@ -70,6 +70,28 @@ public class Solution {
 }
 */
 
+
+/**
+ * consider: 
+ * Morris Traversal
+ * In this method, we have to use a new data structure-Threaded Binary Tree, 
+ * and the strategy is as follows:
+ * 
+
+    Step 1: Initialize current as root
+    Step 2: While current is not NULL,
+
+    If current does not have left child
+        a. Add current’s value
+        b. Go to the right, i.e., current = current.right
+
+    Else
+        a. In current's left subtree, make current the right child of the rightmost node
+        b. Go to this left child, i.e., current = current.left
+
+ * this modifies the tree, there is also a way to recover it.
+ */
+
 //recursive
 // faster versions use concat at the end and have a helper function which is called over and over.
 var inorderTravRec = function(root) {
