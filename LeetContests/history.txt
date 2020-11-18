@@ -36,3 +36,11 @@ Biweekly 36
 Biweekly 37 
 -- Qs 1, 2, 4 = 104 / 8250 -- dropped to 107/8250 when they updated ratings
 -- rating 1807, rank = 7712
+
+BiWeekly38
+-- missed, in Prague
+-- rank 7878
+
+BiWeekly39
+-- Qs 1, 4 = 586 / 6047
+-- rating 1838, rank 6701
