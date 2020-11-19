@@ -10,3 +10,7 @@ smaller if sum was big enough
 and keeping track of the shortest that was big enough
 take care for minLen being 1, especially the first element.
 -- alt: use cumulative sum, but above is faster
+
+
+https://leetcode.com/problems/split-a-string-in-balanced-strings/
+-- just kept count of R, and pushed when the count was 0
