@@ -49,27 +49,22 @@ const inorder2 = (t) => {
     return out
 }
 
-/*
-iterative that doesn't overwrite given tree
-public class Solution {
-    public List < Integer > inorderTraversal(TreeNode root) {
-        List < Integer > res = new ArrayList < > ();
-        Stack < TreeNode > stack = new Stack < > ();
-        TreeNode curr = root;
-        while (curr != null || !stack.isEmpty()) {
-            while (curr != null) {
-                stack.push(curr);
-                curr = curr.left;
-            }
-            curr = stack.pop();
-            res.add(curr.val);
-            curr = curr.right;
+// iterative without overwriting, copied from someone's java
+var inorderTraversal = function(root) {
+    let inorder = [];
+    let stack = [];
+    let cur = root
+    while (cur || stack.length) {
+        while (cur) {
+            stack.push(cur);
+            cur = cur.left;
         }
-        return res;
+        cur = stack.pop();
+        inorder.push(cur.val);
+        cur = cur.right
     }
-}
-*/
-
+    return inorder
+};
 
 /**
  * consider: 
