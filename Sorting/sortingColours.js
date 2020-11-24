@@ -2,7 +2,7 @@
 // sort in place so all 0's at start, followed by all 1's and then all 2's
 
 // 2 pass
-var sortColors = function(nums) {
+var sortColors2pass1 = function(nums) {
     var count = [0, 0, 0];
     for (var i = 0; i<nums.length; i++) {
         count[nums[i]]++
@@ -14,6 +14,19 @@ var sortColors = function(nums) {
             nums[p] = c;
             p++
         }
+    }
+};
+
+// tidier 2 pass, 64ms beating 99.77%
+var sortColors2pass2 = function(nums) {
+    let tally = Array(3).fill(0);
+    for (let n of nums) {
+        tally[n]++
+    }
+    let i = 0, counter = 0;
+    for (let t of tally) {
+        while (t--) {nums[i] = counter; i++}
+        counter++
     }
 };
 
