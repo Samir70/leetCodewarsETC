@@ -50,7 +50,7 @@ const inorder2 = (t) => {
 }
 
 // iterative without overwriting, copied from someone's java
-var inorderTraversal = function(root) {
+const inorderTraversal = root => {
     let inorder = [];
     let stack = [];
     let cur = root
@@ -89,7 +89,7 @@ var inorderTraversal = function(root) {
 
 //recursive
 // faster versions use concat at the end and have a helper function which is called over and over.
-var inorderTravRec = function(root) {
+const inorderTravRec = root => {
     if (root === null) {return []}
     let l = inorderTraversal(root.left);
     let r = inorderTraversal(root.right);
