@@ -30,10 +30,9 @@ var mergeTwoLists = function (a, b) {
 };
 
 // iterative was a little faster, beating 92% on speed and 94% on memory
-var mergeTwoListsIterative = function (l1, l2) {
+var mergeTwoLists = function(a, b) {
     let dummy = new ListNode(0);
     let cur = dummy;
-    let a = l1, b = l2;
     while (a && b) {
         if (a.val < b.val) {
             cur.next = a;
