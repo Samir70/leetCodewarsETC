@@ -5,7 +5,7 @@ const sortRest = (d, i) => {
     let out = Number([...left, ...rest].join(''))
     return out > max ? -1 : out
 }
-var nextGreaterElement = function(n) {
+var nextGreaterElementOld = function(n) {
     let digits = [...''+n].map(Number);
     let hash = Array(10).fill(-1)
     for (let i = digits.length - 1; i>=0; i--) {
@@ -21,6 +21,31 @@ var nextGreaterElement = function(n) {
         } 
     }
     return -1
+};
+
+
+//thought this would be faster, 
+// but only when I used val in the search for swapWith rather than digits[i-1]
+const  nextGreaterElement = n => {
+    let digits = [...''+n].map(Number)
+    let i = digits.length - 1;
+    while (i > 0) {
+        if (digits[i-1] < digits[i]) {break}
+        i--
+    }
+    if (i === 0) {return -1}
+    // console.log('need to swap at', i-1)
+    let val = digits[i-1]
+    let swapWith = i
+    for (let j = i+1; j < digits.length; j++) {
+        if (digits[j] > val && digits[j] < digits[swapWith]) {swapWith = j}
+    }
+    // console.log('swapWith digit at index', swapWith);
+    [digits[i-1], digits[swapWith]] = [digits[swapWith], digits[i-1]];
+    
+    let left = digits.slice(0,i), rest = digits.slice(i).sort((a, b) => a-b)
+    let out = Number([...left, ...rest].join(''))
+    return out > 2147483647 ? -1 : out
 };
 
 
