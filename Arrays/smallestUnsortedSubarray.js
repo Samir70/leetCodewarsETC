@@ -55,19 +55,13 @@ const findUnsortedSubarray1 = nums => {
     return maxRight - minLeft > 0 ? maxRight - minLeft + 1 : 0
 }
 
-// O(n) [s, m] = [71%, 72%]
+// O(n) [s, m] = [96%, 79%]
 const findUnsortedSubarray = nums => {
     if (nums.length < 2) { return 0 }
     let left = 0, right = nums.length - 1;
-    while (left < right) {
-        if (nums[left] <= nums[left + 1]) { left++ }
-        else { break }
-    }
+    while (left < right && nums[left] <= nums[left + 1]) { left++ }
     if (left >= right) { return 0 }
-    while (left < right) {
-        if (nums[right] >= nums[right - 1]) { right-- }
-        else { break }
-    }
+    while (left < right && nums[right] >= nums[right - 1]) { right-- }
     // console.log(left, right)
     let min = nums[left], max = nums[right];
     for (let i = left; i <= right; i++) {
@@ -78,7 +72,7 @@ const findUnsortedSubarray = nums => {
     while (left > 0 && nums[left - 1] > min) { left-- }
     while (right < nums.length - 1 && nums[right + 1] < max) { right++ }
     // console.log(left, right)
-    return right - left > 0 ? right - left + 1 : 0
+    return right - left + 1 
 }
 
 const tests = [
