@@ -47,5 +47,8 @@ BiWeekly39
 
 BiWeekly42
 -- 1 2 3 = 1303 / 6631  think I had method for 4th, but ran out of time
--- rating 1836, rank 7162
+-- rating 1836, rank 7162     then 7222 after weekly.
 
+BiWeekly43
+-- 1 and 3 = 675 / 7873
+-- rating
