@@ -51,4 +51,4 @@ BiWeekly42
 
 BiWeekly43
 -- 1 and 3 = 675 / 7873
--- rating
+-- rating 1865, rank 6310
