@@ -1,3 +1,4 @@
+// wrong answer, doesn't remove the value leaving the window unless that value is the max
 const bubbleUp = (arr, cur) => {
     let parent = Math.floor((cur - 1) / 2);
     if (arr[cur] > arr[parent]) {
