@@ -12,6 +12,19 @@ var climbStairs = function (n) {
     return waysForIdx[n]
 };
 
+// use less memory, since you only need the last two elements
+// beats 96% on speed, but only 13% on mem
+var climbStairs = function (n) {
+    if (n <= 2) { return n }
+    let [a, b] = [1, 2];
+    let i = 2;
+    while (i < n) {
+        [a, b] = [b, a + b];
+        i++
+    }
+    return b
+};
+
 /**
  * note the method of 
  * -- brute force recursion, calling function for smaller values
