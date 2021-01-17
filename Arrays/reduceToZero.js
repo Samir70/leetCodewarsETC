@@ -31,33 +31,38 @@ const minOperations = (nums, x) => {
     return ans === Infinity || ans > nums.length ? -1 : ans
 };
 
-// same with hash rather than map
-const minOperationsWithMap = (nums, x) => {
-    let sum = 0;
-    let ans = Infinity;
-    let cumalitiveLeft = { 0: 0 }
-    for (let i = 0; i < nums.length; i++) {
-        sum += nums[i];
-        cumalitiveLeft[sum] = i + 1;
-        if (sum > x) { break }
-        // no point carrying on, 
-        // negative values are not allowed in nums so sum will not go down.
+// This was faster, but is harder to follow
+// work out best from left, and see if using right helps
+var minOperationsNoMap = function(nums, x) {
+    let leftSum = 0, rightSum = 0;
+    let left = [], right = [];
+    let ans = Infinity
+    let i = 0;
+    while (leftSum < x && i < nums.length) {
+        leftSum += nums[i];
+        left.push(nums[i]);
+        i++
     }
-    if (cumalitiveLeft[x] !== undefined) { ans = cumalitiveLeft[x] };
-    // console.log(cumalitiveLeft, ans)
-    // start suming elements from right, 
-    // check if the complement was found while suming from left
-    sum = 0;
-    for (let i = nums.length - 1; i >= 0; i--) {
-        sum += nums[i];
-        // console.log('rightSum is', sum, 'looking for', x - sum)
-        if (cumalitiveLeft[x - sum] !== undefined) {
-            ans = Math.min(ans, nums.length - i + cumalitiveLeft[x - sum])
-        }
-        if (sum > x) { break }
-        // no negative values to bring sum down
+    if (i === nums.length) {
+        return leftSum === x ? nums.length : -1
     }
-    return ans === Infinity || ans > nums.length ? -1 : ans
+    i = nums.length;
+    while (i > 0) {
+        // console.log(left, right)
+        if (leftSum + rightSum >= x) {
+            if (leftSum + rightSum === x) {
+                ans = Math.min(ans, left.length + right.length)    
+            }
+            if (left.length) {
+                leftSum -= left.pop()
+            } else {return ans === Infinity ? -1 : ans}
+        } else {
+            i--;
+            rightSum += nums[i];
+            right.push(nums[i])
+        } 
+    }
+    return ans === Infinity ? -1 : ans
 };
 
 const tests = [
