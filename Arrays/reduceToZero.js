@@ -3,15 +3,18 @@ const minOperations = (nums, x) => {
     let sum = 0;
     let ans = Infinity;
     let cumalitiveLeft = new Map();
-    cumalitiveLeft.set(0, 0)
-    for (let i = 0; i < nums.length; i++) {
+    cumalitiveLeft.set(0, 0);
+    let i = 0
+    while (i < nums.length) {
         sum += nums[i];
         cumalitiveLeft.set(sum, i + 1);
         if (sum > x) { break }
         // no point carrying on, 
         // negative values are not allowed in nums so sum will not go down.
+        i++
     }
     if (cumalitiveLeft.has(x)) { ans = cumalitiveLeft.get(x) };
+    if (i === nums.length) {return sum === x ? nums.length : -1}
     // console.log(cumalitiveLeft, ans)
     // start suming elements from right, 
     // check if the complement was found while suming from left
@@ -29,7 +32,7 @@ const minOperations = (nums, x) => {
 };
 
 // same with hash rather than map
-const minOperations = (nums, x) => {
+const minOperationsWithMap = (nums, x) => {
     let sum = 0;
     let ans = Infinity;
     let cumalitiveLeft = { 0: 0 }
@@ -61,6 +64,8 @@ const tests = [
     { nums: [1, 1, 4, 2, 3], x: 5, out: 2 },
     { nums: [1, 1], x: 3, out: -1 },
     { nums: [5, 6, 7, 8, 9], x: 4, out: -1 },
+    { nums: [5, 6, 7, 8, 9], x: 35, out: 5 },
+    { nums: [5, 6, 7, 8, 9], x: 36, out: -1 },
     { nums: [3, 2, 20, 1, 1, 3], x: 10, out: 5 }
 ]
 
