@@ -52,3 +52,7 @@ BiWeekly42
 BiWeekly43
 -- 1 and 3 = 675 / 7873
 -- rating 1865, rank 6310    then 6362 after weekly
+
+BiWeekly44
+-- 1 and 3 = 878/8568
+for Q3: [3,12,1,15,5,2,3,7]
