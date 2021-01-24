@@ -1,23 +1,24 @@
 // DP gave TLE when k = 41000
 var mostCompetitive = function (nums, k) {
-    if (nums.length === k) { return nums }
-    if (k === 1) { return [Math.min(...nums)] }
-    let bestSoFar = nums.slice(0, k);
-    for (let i = k; i < nums.length; i++) {
-        bestSoFar.push(nums[i]);
-        // remove first element that is followed by smaller, or the last
-        let j = 1;
-        while (j < bestSoFar.length) {
-            if (bestSoFar[j] < bestSoFar[j - 1]) { break }
-            j++
+    let stack = [];
+    let drop = nums.length - k;
+    for (let n of nums) {
+        while (stack.length && stack[stack.length - 1] > n && drop > 0) {
+            stack.pop();
+            drop--
         }
-        bestSoFar = bestSoFar.filter((x, ind) => ind !== j - 1)
+        stack.push(n)
     }
-    return bestSoFar
+    while (drop > 0) {stack.pop(); drop--}
+    return stack
 };
 
 const tests = [
     { nums: [3, 5, 2, 6], k: 2 , out:[2, 6]},
     { nums: [2, 4, 3, 3, 5, 4, 9, 6], k: 4 , out:[2, 3, 3, 4]},
     { nums: [2, 4, 3, 3, 5, 4, 9, 6], k: 1, out:[2] }
-]
+];
+
+tests.forEach((t, i) => console.log(
+    'test', i, mostCompetitive(t.nums, t.k), 'should be', t.out
+))
