@@ -56,3 +56,4 @@ BiWeekly43
 BiWeekly44
 -- 1 and 3 = 878/8568
 for Q3: [3,12,1,15,5,2,3,7]
+-- unrated due to error in description of Q2
