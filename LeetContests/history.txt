@@ -63,6 +63,4 @@ for Q3: [3,12,1,15,5,2,3,7]
 BiWeekly45
 -- 1 and 3 = 3261/8426
 -- got q2 3min late, bad time usage.
--- Q3 "bbbbbbbbbbbbbbbbbbbbbbbbbbbabbbbbbbbbbbbbbbccbcbcbccbbabbb"
-Q4 [[1,3,4],[2,4,1],[1,1,4],[3,5,1],[2,5,5]]
-3
+-- rating 1832, rank 7809
