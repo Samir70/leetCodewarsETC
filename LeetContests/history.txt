@@ -64,3 +64,8 @@ BiWeekly45
 -- 1 and 3 = 3261/8426
 -- got q2 3min late, bad time usage.
 -- rating 1832, rank 7809
+
+BiWeekly46
+-- 2 = 3319/8740
+-- q1 was doable by brute force, but spent 20min looking for O(n) then giving up.
+-- all four seemed doable, though.
