@@ -70,3 +70,8 @@ BiWeekly46
 -- q1 was doable by brute force, but spent 20min looking for O(n) then giving up.
 -- all four seemed doable, though.
 -- rating 1796, rank 9650
+
+BiWeekly47
+-- 1, 2, 3 = 1670 / 9933
+-- q4 was on graph, already noted as a weakness.
+-- rating 1795, rank 9937
