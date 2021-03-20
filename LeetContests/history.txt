@@ -75,3 +75,9 @@ BiWeekly47
 -- 1, 2, 3 = 1670 / 9933  became 1877 Q3 rejudged allowing more to pass
 -- q4 was on graph, already noted as a weakness.
 -- rating 1795, rank 9937       down to 10,054 after weekly.
+
+BiWeekly48
+-- 1&2 = 3431 / 9129
+Q4:
+[878394,878394,878394,878394]
+should be 2635182
