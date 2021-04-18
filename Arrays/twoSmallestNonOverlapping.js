@@ -1,4 +1,5 @@
 /**
+ * https://leetcode.com/problems/find-two-non-overlapping-sub-arrays-each-with-target-sum/
  * a) make an array of cumulative sums, hash these as you go
  * b) use that to find if there is a subarray with required sum ending at i
  * c) keep track of the shortest found so far. 
@@ -8,7 +9,7 @@
  * d) find the best possible answer.
  */
 
-// timed out on absolutely huge array
+// timed out on absolutely huge array, 392ms accepted
 const minSumOfLengths = (nums, target) => {
     var total = 0;
     var hash = {0:-1}
@@ -30,6 +31,25 @@ const minSumOfLengths = (nums, target) => {
         shortestList.push(shortestSoFar)
         // console.log(shortestList)
         i++;
+    }
+    return bestAnswer === Infinity ? -1 : bestAnswer
+}
+
+// 108ms
+const minSumOfLengths = (nums, target) => {
+    let left = 0, right = 0, total = 0;
+    let shortestBeforeIdx = [];
+    let bestAnswer = Infinity, shortestSoFar = Infinity;
+    while (right < nums.length) {
+        total += nums[right]
+        while (total > target) {total -= nums[left++]}
+        if (total === target) {
+            let len = right - left + 1;
+            if (len < shortestSoFar) {shortestSoFar = len}
+            if (left > 0) {bestAnswer = Math.min(bestAnswer, shortestBeforeIdx[left - 1] + len)}
+        }
+        shortestBeforeIdx.push(shortestSoFar);
+        right++
     }
     return bestAnswer === Infinity ? -1 : bestAnswer
 }
