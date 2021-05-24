@@ -81,7 +81,7 @@ BiWeekly48
 -- rating 1771, rank 11,628
 
 BiWeekly49
--- 1&2 = 2309 / 9082
+-- 1&2 = 2309 / 9082 = 25%
 -- Q2 remarked after new test cases. Failed.
 -- rating 1730, rank 14912
 
@@ -92,10 +92,15 @@ BiWeekly49
 
 BiWeekly50
 -- 1, 2, 3
--- 609 / 6490  (or 929 / 10097)
+-- 609 / 6490  (or 929 / 10097) = 9%
 -- rating 1766, rank 12337
 
 Biweekly51
 -- 1, 2, 3
--- 2936 / 9378
+-- 2936 / 9378 = 31%
 -- rating 1754, rank 13478
+
+Biweekly52
+-- 1, 2, 3
+-- 2903 / 10364 = 28%
+-- rating 1745, rank 14401
