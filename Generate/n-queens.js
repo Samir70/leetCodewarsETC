@@ -31,3 +31,5 @@ var solveNQueens = function(n) {
     }
     return out
 };
+
+var totalNQueens = n => solveNQueens(n).length
