@@ -27,6 +27,20 @@ const removeKDigits = (num, k) => {
     return answer.length === 0 ? "0" : answer.join('')
 }
 
+var removeKdigits = function(num, k) {
+    let ans = []
+    for (let d of num) {
+        while (ans.length && k > 0 && ans[ans.length - 1] > d) {
+            ans.pop()
+            k--
+        }
+        ans.push(d)
+    }
+    while (k) {ans.pop(); k--}
+    while (ans[0] === '0') {ans.shift()}
+    return ans.length ? ans.join('') : '0'
+};
+
 const tests = [
     {num: "1432219", k: 3, output: "1219"},
     {num: "4212219", k: 3, output: "1219"},
