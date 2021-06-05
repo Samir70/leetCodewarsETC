@@ -30,11 +30,11 @@ Biweekly 35
 -- missed it due to ??
 
 Biweekly 36
--- Qs 1, 2 = 2249 / 8332
+-- Qs 1, 2 = 2249 / 8332 = 27%
 -- rating 1693
 
 Biweekly 37 
--- Qs 1, 2, 4 = 104 / 8250 -- dropped to 107/8250 when they updated ratings
+-- Qs 1, 2, 4 = 104 / 8250 -- dropped to 107/8250 when they updated ratings = 1.3%
 -- rating 1807, rank = 7712
 
 BiWeekly38
@@ -42,31 +42,31 @@ BiWeekly38
 -- rank 7878
 
 BiWeekly39
--- Qs 1, 4 = 586 / 6047
+-- Qs 1, 4 = 586 / 6047 = 9.7%
 -- rating 1838, rank 6701
 
 BiWeekly42
--- 1 2 3 = 1303 / 6631  think I had method for 4th, but ran out of time
+-- 1 2 3 = 1303 / 6631  think I had method for 4th, but ran out of time = 20%
 -- rating 1836, rank 7162     then 7222 after weekly.
 
 BiWeekly43
--- 1 and 3 = 675 / 7873
+-- 1 and 3 = 675 / 7873 = 8.6%
 -- rating 1865, rank 6310    then 6362 after weekly
 
 BiWeekly44
--- 1 and 3 = 878/8568
+-- 1 and 3 = 878/8568 = 10.2%
 for Q3: [3,12,1,15,5,2,3,7]
 -- unrated due to error in description of Q2
 -- due to weeklys
 -- rating 1865, rank 6422
 
 BiWeekly45
--- 1 and 3 = 3261/8426
+-- 1 and 3 = 3261/8426 = 39%
 -- got q2 3min late, bad time usage.
 -- rating 1832, rank 7809
 
 BiWeekly46
--- 2 = 3319/8740
+-- 2 = 3319/8740 = 38%
 -- q1 was doable by brute force, but spent 20min looking for O(n) then giving up.
 -- all four seemed doable, though.
 -- rating 1796, rank 9650
@@ -77,7 +77,7 @@ BiWeekly47
 -- rating 1795, rank 9937       down to 10,054 after weekly.
 
 BiWeekly48
--- 1&2 = 3431 / 9129
+-- 1&2 = 3431 / 9129 = 38%
 -- rating 1771, rank 11,628
 
 BiWeekly49
@@ -104,3 +104,8 @@ Biweekly52
 -- 1, 2, 3
 -- 2903 / 10364 = 28%
 -- rating 1745, rank 14401
+
+Biweekly53
+-- 1, 2
+-- 5125 / 12287 = 42%   or 3699 / 9222 = 40%
+-- rating 1722, rank 16857
