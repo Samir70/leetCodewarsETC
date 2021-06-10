@@ -51,3 +51,18 @@ var maxResult = function(nums, k) {
     return best[best.length - 1]
 };
 
+// a bit tidier, beats 67%
+var maxResult = function(nums, k) {
+    let stack = [[nums[0], 0]], dp = [nums[0]];
+    let left = 0; // left side of window of (max) k values in stack
+    for (let i = 1; i < nums.length; i++) {
+        while (stack[left][1] < i - k) {left++} 
+        let v = nums[i] + stack[left][0]
+        dp.push(v)
+        while (stack.length > left && stack[stack.length - 1][0] < v) {stack.pop()}
+        stack.push([v, i])
+        // console.log(stack, left)
+    }
+    return dp[nums.length - 1]
+};
+
