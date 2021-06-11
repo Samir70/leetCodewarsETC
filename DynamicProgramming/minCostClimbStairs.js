@@ -3,6 +3,7 @@
  * find minimum of reaching the landing
  * 
  * Each cost is non-negative, stepping on top landing is free
+ * https://leetcode.com/problems/min-cost-climbing-stairs/
  */
 
 var minCostClimbingStairs = function(cost) {
@@ -20,7 +21,8 @@ var minCostClimbingStairs = function(cost) {
 
 const tests = [
     {cost:[10, 15, 20], out:15},
-    {cost:[1, 100, 1, 1, 1, 100, 1, 1, 100, 1], out:6}
+    {cost:[1, 100, 1, 1, 1, 100, 1, 1, 100, 1], out:6}, 
+    {cost:[0,2,2,1], out:2}
 ]
 
 tests.forEach((t, i) => console.log(
