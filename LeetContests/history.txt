@@ -109,3 +109,7 @@ Biweekly53
 -- 1, 2
 -- 5125 / 12287 = 42%   or 3699 / 9222 = 40%
 -- rating 1722, rank 16857
+
+BiWeekly54
+-- 1, 2, 3 (including a few mistakes, two because part of code was commented out!)
+-- 2128 / 12076 = 17.6%
