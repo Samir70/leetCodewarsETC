@@ -1,16 +1,17 @@
-const removeDuplicates = (s, k) => {
+// faster
+const removeDuplicates1 = (s, k) => {
     let out = '';
     let prev = null, stack = []
     for (let c of s) {
         out += c;
         if (prev === null) {
-            prev = {letter:c, count:1}
+            prev = { letter: c, count: 1 }
         } else {
             if (prev.letter === c) {
                 prev.count++
             } else {
                 stack.push(prev)
-                prev = {letter:c, count:1}
+                prev = { letter: c, count: 1 }
             }
         }
         if (prev.count === k) {
@@ -22,35 +23,38 @@ const removeDuplicates = (s, k) => {
     return out
 }
 
-/**
- * Lee215, two pointers:
- * public String removeDuplicates(String s, int k) {
-        int i = 0, n = s.length(), count[] = new int[n];
-        char[] stack = s.toCharArray();
-        for (int j = 0; j < n; ++j, ++i) {
-            stack[i] = stack[j];
-            count[i] = i > 0 && stack[i - 1] == stack[j] ? count[i - 1] + 1 : 1;
-            if (count[i] == k) i -= k;
+// via lee215
+// slower, 
+var removeDuplicates = function(s, k) {
+    let stack = [];
+    cur = ['#',0];
+    for (let c of s) {
+        if (c === cur[0]) {
+            cur[1]++;
+            if (cur[1] === k) {
+                cur = stack.length ? stack.pop() : ['#', 0]
+            }
+        } else {
+            stack.push(cur);
+            cur = [c, 1]
         }
-        return new String(stack, 0, i);
     }
-    stack:
-    def removeDuplicates(self, s, k):
-        stack = [['#', 0]]
-        for c in s:
-            if stack[-1][0] == c:
-                stack[-1][1] += 1
-                if stack[-1][1] == k:
-                    stack.pop()
-            else:
-                stack.append([c, 1])
-        return ''.join(c * k for c, k in stack)
- */
+    if (cur[0] !== '#') {stack.push(cur)}
+    // console.log(stack)
+    stack.shift()
+    let out = ''
+    for (let [c, i] of stack) {
+        while (i > 0) {out += c; i--}
+    }
+    return out
+};
+
 
 const tests = [
     { s: "abcd", k: 2, out: "abcd" },
     { s: "deeedbbcccbdaa", k: 3, out: "aa" },
-    { s: "pbbcggttciiippooaais", k: 2, out: "ps" }
+    { s: "pbbcggttciiippooaais", k: 2, out: "ps" },
+    { s: "yfttttfbbbbnnnnffbgffffgbbbbgssssgthyyyy", k: 4, out: "ybth" }
 ];
 
 tests.forEach((t, i) => console.log(
