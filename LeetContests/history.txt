@@ -12,7 +12,7 @@ Biweekly 30
 
 Biweekly 31 
 -- first contest where I got all 4
--- 344/8677
+-- 344/8677 = 4%
 -- Qs suited my, some tried a complex method on 4th and got TLE. I hadn't even heard of the method.
 -- Rating went to 1692
 
@@ -110,6 +110,7 @@ Biweekly53
 -- 5125 / 12287 = 42%   or 3699 / 9222 = 40%
 -- rating 1722, rank 16857
 
-BiWeekly54
+BiWeekly54 (19th submission)
 -- 1, 2, 3 (including a few mistakes, two because part of code was commented out!)
 -- 2128 / 12076 = 17.6%
+-- rating 1736, rank 15870
