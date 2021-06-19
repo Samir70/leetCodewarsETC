@@ -21,6 +21,19 @@ class StockSpanner {
     }
 }
 
+// var StockSpanner = function() {
+//     this.stock = [[Infinity, 0]];
+//     this.count = 0
+// };
+
+// StockSpanner.prototype.next = function(price) {
+//     this.count++;
+//     while (this.stock[this.stock.length - 1][0] <= price) {this.stock.pop()}
+//     let out = this.count - this.stock[this.stock.length - 1][1]
+//     this.stock.push([price, this.count]);
+//     return out
+// };
+
 
 /** 
  * Your StockSpanner object will be instantiated and called as such:
