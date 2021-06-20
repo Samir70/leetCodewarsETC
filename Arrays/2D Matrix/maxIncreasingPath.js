@@ -1,3 +1,8 @@
+/**
+ * set maxFrom[r][c] to be the max length of path from r, c
+ * each coordinate need only be processed once, so use as a memo
+ */
+
 var longestIncreasingPath = function (matrix) {
     let max = 0;
     let rows = matrix.length, cols = matrix[0].length;
