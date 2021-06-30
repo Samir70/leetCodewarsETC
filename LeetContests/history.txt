@@ -114,3 +114,8 @@ BiWeekly54 (19th submission)
 -- 1, 2, 3 (including a few mistakes, two because part of code was commented out!)
 -- 2128 / 12076 = 17.6%
 -- rating 1736, rank 15870
+
+BiWeekly55 (20th submission)
+-- all four with 3mins to spare
+-- 557 / 11873 = 4.7%
+-- rating 1798, rank 11,517
