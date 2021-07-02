@@ -11,7 +11,7 @@ You have the following 3 operations permitted on a word:
  */
 
 // edit distance or Levenshtein distance
-const minDistance = (word1, word2) => {
+const minDistanceHighMem = (word1, word2) => {
     word1 = 'x'+word1;
     word2 = 'x'+word2;
     var dp = [];
@@ -35,26 +35,24 @@ const minDistance = (word1, word2) => {
     return dp[i-1][j-1]
 }
 
-// nicer: 
-/*
-var minDistance = function(s, t) {
-    const m = s.length, n = t.length
-
-    let prev = [...Array(n + 1).keys()]
+// 88ms beats 99%
+var minDistance = function(a, b) {
+    const m = a.length, n = b.length;
+    let prev = [...Array(n+1).keys()]
     for (let i = 1; i <= m; i++) {
-      let curr = new Array(n + 1)
-
-      curr[0] = i
-      for (let j = 1; j <= n; j++) {
-        if (s[i-1] === t[j-1]) curr[j] = prev[j-1]
-        else curr[j] = Math.min(prev[j-1], prev[j], curr[j-1]) + 1
-      }
-
-      prev = curr
+        let cur = Array(n+1);
+        cur[0] = i;
+        for (let j = 1; j <= n; j++) {
+            if (a[i-1] === b[j-1]) {
+                cur[j] = prev[j-1]
+            } else {
+                cur[j] = Math.min(prev[j], prev[j-1], cur[j-1]) + 1
+            }
+        }
+        prev = [...cur]
     }
     return prev[n]
-}; */
-
+};
 
 const tests = [
     { word1: "horse", word2: "ros", out:3},
