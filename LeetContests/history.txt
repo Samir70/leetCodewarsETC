@@ -119,3 +119,8 @@ BiWeekly55 (20th submission)
 -- all four with 3mins to spare
 -- 557 / 11873 = 4.7%
 -- rating 1798, rank 11,517
+
+BiWeekly56 (21st submission)
+-- only first, but 2nd and 3rd doable
+-- 4497 / 10893 = 41%
+-- rating 1768, rank 13903
