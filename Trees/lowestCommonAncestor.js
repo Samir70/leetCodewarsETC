@@ -1,4 +1,5 @@
 // 100ms beats 54%
+// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
 var lowestCommonAncestor = function(root, p, q) {
     if (root === p) {return p}
     if (root === q) {return q}
@@ -28,4 +29,19 @@ var lowestCommonAncestor = function(root, p, q) {
         qAnc = qAnc.parent;
     }
     return pAnc
+};
+
+// for a BST we can take advantage of the sorting that has been done:
+// https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+var lowestCommonAncestor = function(root, p, q) {
+    while (root !== p && root !== q ) {
+        if (p.val > root.val && q.val > root.val) {
+            root = root.right
+        } else if (p.val < root.val && q.val < root.val) {
+            root = root.left
+        } else {
+            return root
+        }
+    }
+    return root
 };
