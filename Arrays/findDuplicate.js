@@ -23,3 +23,19 @@ var findDuplicate = function(nums) {
     }
     return -1
 };
+
+// slower, but illustrates use of BS for range rather than index
+var findDuplicate = function(nums) {
+    let left = 1, right = nums.length - 1;
+    while (left < right) {
+        let mid = Math.floor((left + right) / 2)
+        let count = 0;
+        for (let n of nums) {if (n <= mid) {count++}}
+        if (count <= mid) {
+            left = mid+1
+        } else {
+            right = mid
+        }
+    }
+    return left
+};
