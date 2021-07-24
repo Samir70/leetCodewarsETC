@@ -1,4 +1,5 @@
-const kClosest = (arr, k) => {
+// 172ms, beats 87%
+const kClosestWithSort = (arr, k) => {
     var sqDist = arr.map(point => { return { dist: point[0] ** 2 + point[1] ** 2, xy: point } })
     return sqDist.sort((a, b) => a.dist - b.dist).slice(0, k).map(x => x.xy)
 }
@@ -16,6 +17,7 @@ const kClosest = (arr, k) => {
  * but for large k, this will be like sorting the array
  * 
  */
+// 164ms, beats 91%
 const rndInt = n => Math.floor(Math.random() * n);
 
 const kClosestQuickSelect = (arr, k) => {
@@ -38,6 +40,20 @@ const kClosestQuickSelect = (arr, k) => {
     }
     return kClosestQuickSelect(lower, k)
 }
+
+// 156ms beats 96%
+const distSq = p => p[0]*p[0] + p[1]*p[1]
+var kClosest = function(points, k) {
+    if (points.length === k) {return points}
+    let d = distSq(
+        points[Math.floor(Math.random() * points.length)]
+    )
+    let lower = [], other = []
+    for (let p of points) {
+        distSq(p) < d ? lower.push(p) : other.push(p)
+    }
+    return lower.length >= k ? kClosest(lower, k) : lower.concat(kClosest(other, k - lower.length))
+};
 
 const tests = [
     { points: [[3, 3], [5, -1], [-2, 4]], k: 2, out: [[3, 3], [-2, 4]] },
