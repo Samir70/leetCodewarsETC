@@ -124,3 +124,7 @@ BiWeekly56 (21st submission)
 -- only first, but 2nd and 3rd doable
 -- 4497 / 10893 = 41%
 -- rating 1768, rank 13903
+
+BiWeekly57 (22nd submission)
+-- first two, should have started on Q4
+-- 1887 / 12636 = 15%
