@@ -128,3 +128,4 @@ BiWeekly56 (21st submission)
 BiWeekly57 (22nd submission)
 -- first two, should have started on Q4
 -- 1887 / 12636 = 15%
+-- rating 1783, rank 13123
