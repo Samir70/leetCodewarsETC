@@ -26,3 +26,15 @@ var minimumPerimeter = function(need) {
     }
     return perim
 };
+
+
+const base = 10**9 + 7
+var countSpecialSubsequences = function(nums) {
+    let dp = [0,0,0]
+    for (let n of nums) {
+        dp[n] = (dp[n] + dp[n])
+        dp[n] += (n > 0 ? dp[n-1] : 1)
+        dp[n] %= base
+    }
+    return dp[2]
+};
