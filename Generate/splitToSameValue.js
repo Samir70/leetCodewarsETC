@@ -68,6 +68,35 @@ var threeEqualParts = function(arr) {
     return [a - 1, b]
 };
 
+// 80ms, best 96%
+var threeEqualParts = function(arr) {
+    let oneCount = arr.reduce((acc, val) => acc+val, 0)
+    if (oneCount % 3 !== 0) {return [-1, -1]}
+    if (oneCount === 0) {return [0, arr.length - 1]}
+    let zerosAtEnd = 0;
+    let i = arr.length - 1;
+    while (arr[i] === 0) {zerosAtEnd++; i--}
+    let target = oneCount / 3;
+    // let a, b, c be the first one of each section
+    let a = arr.indexOf(1)
+    let b = a+1;
+    oneCount = 0
+    while (oneCount < target) {oneCount += arr[b++]}
+    let c = b;
+    b--
+    oneCount = 0;
+    while (oneCount < target) {oneCount += arr[c++]}
+    c--
+    // console.log(arr, 'ones start at', [a, b, c])
+    let offset = 0;
+    while (c + offset < arr.length) {
+        if (arr[a+offset] !== arr[b + offset]) {return [-1, -1]}
+        if (arr[a+offset] !== arr[c + offset]) {return [-1, -1]}
+        offset++
+    }
+    return [a+offset-1, b+offset]
+};
+
 
 const tests = [
     { arr: [1, 0, 1, 0, 1], out: [0, 3] },
