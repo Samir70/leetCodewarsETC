@@ -1,4 +1,4 @@
-var findOrder = function (n, deps) {
+var findOrderSlow = function (n, deps) {
     var noIns = new Set([...Array(n)].map((x, i) => i));
     var insOuts = {}
     var out = [];
@@ -32,31 +32,54 @@ var findOrder = function (n, deps) {
     return edgeCount > 0 ? [] : out
 };
 
-/**
- * var findOrder = function(n, b2as) {
-    let noIns = new Set([...Array(n)].map((x, i) => i));
-    let ins = {}, outs = {}
+// 84ms beats 94%
+var findOrder = function(n, b2as) {
+    const noIns = new Set(Array.from({length:n}, (v, i) => i));
+    const ins = {}, outs = {}
     for (let [a, b] of b2as) {
-        if (ins[a] === undefined) {ins[a] = 0} 
-        if (outs[b] === undefined) {outs[b] = new Set() }
-        ins[a]++;
-        outs[b].add(a)
+        ins[a] = (ins[a] || 0) + 1
+        if (outs[b] === undefined) {outs[b] = []}
+        outs[b].push(a)
         noIns.delete(a)
     }
-    let stack = Array.from(noIns);
-    let edgecount = b2as.length;
-    let out = [];
+    let edgeCount = b2as.length, stack = Array.from(noIns), out = []
     while (stack.length) {
         let cur = stack.pop()
         out.push(cur)
         if (outs[cur] === undefined) {continue}
-        for (let dest of outs[cur]) {
+        for (dest of outs[cur]) {
+            ins[dest]--
+            if (ins[dest] === 0) {stack.push(dest)}
+            edgeCount--
+        }
+    }
+    return edgeCount === 0 ? out : []
+};
+
+/**
+ * var findOrder = function(n, deps) {
+    let noIns = new Set(Array.from({length:n}, (v, i) => i))
+    let ins = {}, outs = {}
+    for (let [a, b] of deps) {
+        ins[a] = (ins[a] || 0) + 1
+        if (outs[b] === undefined) {outs[b] = []}
+        outs[b].push(a)
+        noIns.delete(a)
+    }
+    
+    let out = [], stack = Array.from(noIns), edgecount = deps.length;
+    while (stack.length) {
+        let c = stack.pop()
+        out.push(c)
+        if (outs[c] === undefined) {continue}
+        for (let dest of outs[c]) {
+            if (ins[dest] === undefined) {continue}
             ins[dest]--
             if (ins[dest] === 0) {stack.push(dest)}
             edgecount--
         }
     }
-    return edgecount ? [] : out
+    return edgecount === 0 ? out : []
 };
  */
 
