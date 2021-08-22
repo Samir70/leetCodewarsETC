@@ -32,3 +32,43 @@ var maxMatrixSum = function(matrix) {
     if (min < -max) {max = -min}
     return negs % 2 ? sum + max + max : sum
 };
+
+
+// TLEs
+var countPaths = function(n, roads) {
+    let graph = {}
+    for (let [a, b, c] of roads) {
+        if (graph[a] === undefined) {graph[a] = []}
+        if (graph[b] === undefined) {graph[b] = []}
+        graph[a].push([b, c])
+        graph[b].push([a, c])
+    }
+    if (graph[0] === undefined) {return 0}
+    let paths = 0, minCost = Infinity
+    // console.log(graph)
+    
+    const findPaths = (route, lastStop, cost) => {
+        // console.log({route, lastStop, cost})
+        if (lastStop === n - 1) {
+            if (cost < minCost) {
+                paths = 1;
+                minCost = cost
+            } else if (cost === minCost) {
+                paths++
+                if (paths === 10**9 + 7) {paths = 0}
+            }
+            // console.log(paths)
+            return null
+        }
+    
+        for (let [nex, cos] of graph[lastStop]) {
+            if (route.indexOf(nex) !== -1) {continue}
+            findPaths([...route, lastStop], nex, cost+cos)
+        }
+    }
+    
+    for (let [next, cost] of graph[0]) {
+        findPaths([0], next, cost)
+    }
+    return paths
+};
