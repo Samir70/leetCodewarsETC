@@ -33,10 +33,11 @@ var maxMatrixSum = function(matrix) {
     return negs % 2 ? sum + max + max : sum
 };
 
-
-// TLEs
+// 196ms
+const base = 10**9 + 7;
 var countPaths = function(n, roads) {
-    let graph = {}
+    if (n === 1) {return 1}
+   let graph = {}
     for (let [a, b, c] of roads) {
         if (graph[a] === undefined) {graph[a] = []}
         if (graph[b] === undefined) {graph[b] = []}
@@ -45,30 +46,32 @@ var countPaths = function(n, roads) {
     }
     if (graph[0] === undefined) {return 0}
     let paths = 0, minCost = Infinity
-    // console.log(graph)
-    
-    const findPaths = (route, lastStop, cost) => {
-        // console.log({route, lastStop, cost})
-        if (lastStop === n - 1) {
-            if (cost < minCost) {
-                paths = 1;
-                minCost = cost
-            } else if (cost === minCost) {
-                paths++
-                if (paths === 10**9 + 7) {paths = 0}
+    // console.log(graph) 
+    let visited = Array(n).fill(false);
+    let dist = Array(n).fill([Infinity, 0]); // [cost, ways to get here for that cost]
+    let stack = new Set();
+    stack.add(0);
+    dist[0] = [0, 1];
+    while (stack.size) {
+        let cur, minDist = Infinity
+        for (let s of stack) {
+            if (visited[s]) {stack.delete(s); continue}
+            if (dist[s][0] < minDist) {
+                cur = s; minDist = dist[s][0]
             }
-            // console.log(paths)
-            return null
         }
-    
-        for (let [nex, cos] of graph[lastStop]) {
-            if (route.indexOf(nex) !== -1) {continue}
-            findPaths([...route, lastStop], nex, cost+cos)
+        stack.delete(cur); visited[cur] = true;
+        // console.log(cur, graph[cur], minDist)
+        for (let [dest, cost] of graph[cur]) {
+            if (!visited[dest]) {stack.add(dest)}
+            let newCost = dist[cur][0] + cost;
+            if (newCost < dist[dest][0]) {
+                dist[dest] = [newCost, dist[cur][1]]
+            } else if (newCost === dist[dest][0]) {
+                dist[dest] = [newCost, (dist[dest][1] + dist[cur][1]) % base]
+            }
         }
+        // console.log({afterHandling:cur, stack, dist})
     }
-    
-    for (let [next, cost] of graph[0]) {
-        findPaths([0], next, cost)
-    }
-    return paths
+    return dist[n-1][1]
 };
