@@ -129,3 +129,8 @@ BiWeekly57 (22nd submission)
 -- first two, should have started on Q4
 -- 1887 / 12636 = 15%
 -- rating 1783, rank 13123
+
+BiWeekly60 (23rd submission)
+-- first two, maybe could have got 3rd struggled on 4th
+-- 2489 / 10920 = 23%
+-- rating 1782, rank 14048
