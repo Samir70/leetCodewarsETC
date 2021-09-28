@@ -59,3 +59,17 @@ const happys = [
     793, 802, 806, 818, 820, 833, 836, 847, 860, 863, 874, 881, 888, 899, 901,
     904, 907, 910, 912, 913, 921, 923, 931, 932, 937, 940, 946, 964, 970, 973, 989, 998
 ]
+
+/*
+NB: only cycle is: 4, 16, 37, 58, 89, 145, 42, 20  (or 1, 1, 1, 1,...)
+So every number reduces to 1 or passes 4 over and over
+var isHappy = function(n) {
+    let state = n;
+    while (state > 1) {
+        state = [...""+state].map(Number).reduce((acc, val) => acc + val*val, 0)
+        // console.log({state, seen})
+        if (state === 4) {return false}
+    }
+    return true
+};
+*/
