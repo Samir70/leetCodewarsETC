@@ -21,6 +21,26 @@
 };
  */
 
+/**
+ * One pass:
+ var removeNthFromEnd = function(head, n) {
+    let dummy = new ListNode('whatever', head);
+    let i = 0;
+    let fast = dummy, slow = dummy;
+    while (i < n) {
+        if (fast.next) {
+            fast = fast.next;
+            i++
+        }
+    }
+    while (fast.next) {
+        fast = fast.next;
+        slow = slow.next
+    }
+    slow.next = slow.next.next
+    return dummy.next
+};
+ */
 // two pass:
 var removeNthFromEnd = function(head, n) {
     let len = 0;
