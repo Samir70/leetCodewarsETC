@@ -2,7 +2,7 @@
  * https://leetcode.com/problems/prefix-and-suffix-search/submissions/
  * @param {string[]} words
  */
- class trieNode {
+class trieNode {
     constructor(name) {
         this.key = name;
         this.foundAt = []
@@ -32,7 +32,7 @@ class Trie {
     }
     revInsert(word, idx) {
         let current = this.head;
-        for (let i = word.length - 1; i >= 0; i--){
+        for (let i = word.length - 1; i >= 0; i--) {
             let w = word[i]
             if (current.children[w] === undefined) {
                 current.children[w] = new trieNode(w)
@@ -46,7 +46,7 @@ class Trie {
     search(word, prefix = false) {
         var current = this.head;
         for (var w of word) {
-            if (current.children[w] === undefined) { return false}
+            if (current.children[w] === undefined) { return false }
             current = current.children[w]
         }
         return current.foundAt
@@ -60,7 +60,7 @@ class Trie {
 
 
 
-var WordFilter = function(words) {
+var WordFilter = function (words) {
     this.forwardTrie = new Trie()
     this.backwardTrie = new Trie()
     for (let i = 0; i < words.length; i++) {
@@ -75,14 +75,14 @@ var WordFilter = function(words) {
  * @param {string} suffix
  * @return {number}
  */
-WordFilter.prototype.f = function(prefix, suffix) {
+WordFilter.prototype.f = function (prefix, suffix) {
     let preIdxs = this.forwardTrie.search(prefix, true)
     suffix = [...suffix].reverse().join('')
     let sufIdxs = this.backwardTrie.search(suffix, true)
     // console.log(preIdxs, sufIdxs)
     let pre = preIdxs.length - 1, suf = sufIdxs.length - 1;
     while (pre >= 0 && suf >= 0) {
-        if(preIdxs[pre] === sufIdxs[suf]) {return preIdxs[pre]}
+        if (preIdxs[pre] === sufIdxs[suf]) { return preIdxs[pre] }
         preIdxs[pre] > sufIdxs[suf] ? pre-- : suf--
     }
     return -1
