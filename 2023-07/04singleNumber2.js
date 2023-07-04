@@ -1,13 +1,23 @@
 // find singleton in an array where all other values appear atleast twice
 // (if it was guaranteed exactly twice, we could use xor)
 // O(n) for both speed and memory
-const singleNumber = nums => {
+const singleNumber2 = nums => {
     var tally = {};
     for (var n of nums) {
         if (tally[n] === undefined) {tally[n] = 0}
         tally[n]++
     }
    return  Number(Object.keys(tally).find(x => tally[x] === 1))
+}
+
+const singleNumber = nums => {
+  let ones = 0, twos = 0;
+  for (let n of nums) {
+    ones ^= (n & ~twos)
+    twos ^= (n & ~ones)
+  }
+  // console.log({ones: ones.toString(2), twos: twos.toString(2)})
+  return ones
 }
 
 const tests = [
