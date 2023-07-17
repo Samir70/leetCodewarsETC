@@ -1,8 +1,7 @@
 // lists have numbers starting from least sig digit
 // to 764 is 4 -> 6 -> 7 -> null
 
-var addTwoNumbers = function (left, right) {
-    let a = left, b = right;
+var addTwoNumbers = function (a, b) {
     let sum = new ListNode();
     let cur = sum;
     let carry = 0;

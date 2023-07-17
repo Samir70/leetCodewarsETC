@@ -25,7 +25,7 @@ const findMid = listHead => {
 }
 
 const reverse = listHead => {
-    let prev = null, next = null, cur = listHead;
+    let prev = null, cur = listHead;
     while (cur) {
         let nxt = cur.next;
         cur.next = prev;
