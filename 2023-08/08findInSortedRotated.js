@@ -1,3 +1,15 @@
+/**
+ * nums is sorted, but rotated. eg: 
+ * [0, 1, 2, 4, 5, 6, 7] becomes [4, 5, 6, 7, 0, 1, 2]
+ * After finidng mid, we split this subarray into 3 parts:
+
+    subarray nums[left ~ mid - 1]
+    element nums[mid].
+    subarray nums[mid + 1, right].
+
+ * One of the subarrays is completely sorted, the other may contain a pivot point
+ */
+
 var search1 = function (nums, target) {
   let left = 0, right = nums.length - 1;
   while (left < right) {
