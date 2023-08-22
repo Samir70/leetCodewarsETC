@@ -36,6 +36,7 @@ const convertToTitle = n => {
     let div = Math.floor(n/26), rem = n%26;
     if (rem === 0) {rem = 26; div--}
     let capA = 'A'.charCodeAt(0) - 1
+    console.log({n, div, rem})
     return (div === 0 ? '' : convertToTitle(div))+String.fromCharCode(capA+rem)
 };
 
