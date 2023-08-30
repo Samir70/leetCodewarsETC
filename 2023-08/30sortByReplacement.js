@@ -3,7 +3,7 @@
  * @return {number}
  */
 const makeIncreasing = (n, right) => {
-  if (n < right) { return { steps: 0, leftMost: n } }
+  if (n < right) { return { steps: 0, newLimit: n } }
   /**
    * suppose 
    * n = k*right + m 
@@ -18,29 +18,36 @@ const makeIncreasing = (n, right) => {
    * so 41 = 6 + 7 + 7 + 7 + 7 + 7
    * The extra 5 gets spread over the five rightmost 6s
    * 127 = 3x36 + 19, but 4 x35 = 140 which is too big
+   * Try splitting when limit is 5
+   * 13 = 4 + 4 + 5
+   * 12 = 4 + 4 + 4
+   * 11 = 3 + 4 + 4
+   * 10 = 3 + 3 + 4
+   * for all of them, we want to split into three numbers
+   * so new limit is floor(n / 3)
    */
   if (n % right === 0) {
     return {
-      steps: (n / right) - 1, leftMost: right
+      steps: (n / right) - 1, newLimit: right
     }
   } else {
     let steps = Math.floor(n/right)
-    let leftMost = Math.floor(n / (steps + 1))
+    let newLimit = Math.floor(n / (steps + 1))
     return {
-      steps, leftMost
+      steps, newLimit
     }
   }
 }
 var minimumReplacement = function (nums) {
-  let steps = 0;
+  let totalSteps = 0, limit = nums[nums.length - 1]
   for (let i = nums.length - 2; i >= 0; i--) {
-    let n = nums[i], right = nums[i + 1];
-    let solveThisIndex = makeIncreasing(n, right);
-    steps += solveThisIndex.steps;
-    // console.log({ num: nums[i], limit: right, newLimit: solveThisIndex.leftMost, steps: solveThisIndex.steps })
-    nums[i] = solveThisIndex.leftMost;
+    let n = nums[i]
+    let solveThisIndex = makeIncreasing(n, limit);
+    totalSteps += solveThisIndex.steps;
+    // console.log({ num: nums[i], limit, newLimit: solveThisIndex.newLimit, steps: solveThisIndex.steps })
+    limit = solveThisIndex.newLimit;
   }
-  return steps
+  return totalSteps
 };
 
 const tests = [
