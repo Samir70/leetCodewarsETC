@@ -9,6 +9,10 @@ var minTaps = function (n, ranges) {
     intervals.push([Math.max(0, tap - ranges[tap]), Math.min(n, tap + ranges[tap])]);
   }
   intervals.sort((a, b) => a[0] - b[0])
+  /**
+   * We may be able to do without sorting by computing an array
+   * max_reach[i] = the maximum end over all taps having start=i 
+   */
   // console.log(intervals)
   let intervalCount = 0, start = 0, end = 0;
   let i = 0;
