@@ -8,61 +8,66 @@
 
 const makeEdge = (a, b) => `${a}->${b}`
 var sortItems = function (n, m, group, beforeItems) {
-  let noIns = new Set([...Array(n)].map((v, i) => i));
-  let insAndOuts = {}, edgeCount = 0;
-  // handle all pairs a, b that are ordered a -> b
-  for (let b = 0; b < n; b++) {
-    for (let a of beforeItems[b]) {
-      // console.log(makeEdge(a, b))
-      if (insAndOuts[a] === undefined) {
-        insAndOuts[a] = { ins: new Set(), outs: new Set() }
-      }
-      if (insAndOuts[b] === undefined) {
-        insAndOuts[b] = { ins: new Set(), outs: new Set() }
-      }
-      insAndOuts[a].outs.add(b)
-      insAndOuts[b].ins.add(a)
-      noIns.delete(b)
-      edgeCount++
+  let groupID = m;
+  let itemGraph = [], itemIndegree = Array(n).fill(0);
+  for (let i = 0; i < n; i++) {
+    if (group[i] === -1) {
+      group[i] = groupID++
     }
+    itemGraph.push([])
   }
-  // console.log({ noIns, edgeCount, insAndOuts })
-  let stack = Array.from(noIns);
-  let order = [];
-  while (stack.length > 0) {
-    let vert = stack.pop();
-    order.push(vert);
-    if (insAndOuts[vert] !== undefined) {
-      for (let dest of insAndOuts[vert].outs) {
-        insAndOuts[dest].ins.delete(vert)
-        if (insAndOuts[dest].ins.size === 0) { stack.push(dest) }
-        edgeCount--
+  let groupGraph = [], groupIndegree = Array(groupID).fill(0)
+  for (let i = 0; i < groupID; i++) {
+    groupGraph.push([])
+  }
+
+  for (let cur = 0; cur < n; cur++) {
+    for (let prev of beforeItems[cur]) {
+      itemGraph[prev].push(cur)
+      itemIndegree[cur]++
+      if (group[prev] !== group[cur]) {
+        groupGraph[group[prev]].push(group[cur])
+        groupIndegree[group[cur]]++
       }
     }
   }
-  // console.log({ order, edgeCount, order })
-  if (edgeCount > 0) { return [] }
-  let groupLists = {}, groupOrder = [], groupsSeen = new Set();
-  for (let i = n - 1; i >= 0; i--) {
-    let val = order[i]
-    let g = group[val];
-    if (!groupsSeen.has(g)) {
-      groupOrder.push(g);
-      groupsSeen.add(g)
+
+  // Tologlogical sort nodes in graph, return [] if a cycle exists.
+  const topologicalSort = (graph, indegree) => {
+    let visited = []
+    let stack = []
+    for (let i = 0; i < indegree.length; i++) {
+      if (indegree[i] === 0) { stack.push(i) }
     }
+    while (stack.length > 0) {
+      let cur = stack.pop()
+      visited.push(cur)
+      for (neighbour of graph[cur]) {
+        indegree[neighbour]--
+        if (indegree[neighbour] === 0) { stack.push(neighbour) }
+      }
+    }
+    return visited.length === graph.length ? visited : []
   }
-  for (let val of order) {
-    let g = group[val];
-    if (groupLists[g] === undefined) { groupLists[g] = [] }
-    groupLists[g].push(val)
+
+  let itemOrder = topologicalSort(itemGraph, itemIndegree)
+  let groupOrder = topologicalSort(groupGraph, groupIndegree)
+  console.log({ itemGraph, itemIndegree, itemOrder })
+  console.log({ groupGraph, groupIndegree, groupOrder })
+  if (itemOrder.length === 0 || groupOrder.length === 0) { return [] }
+
+  let orderedGroups = {}
+  for (let item of itemOrder) {
+    if (orderedGroups[group[item]] === undefined) {
+      orderedGroups[group[item]] = []
+    }
+    orderedGroups[group[item]].push(item)
   }
-  groupOrder.reverse()
-  // console.log({ groupLists, groupOrder })
-  let out = []
-  for (let g of groupOrder) {
-    out = out.concat(groupLists[g])
+  let answer = []
+  for (let groupIndex of groupOrder) {
+    answer = answer.concat(orderedGroups[groupIndex])
   }
-  return out
+  return answer
 };
 
 const tests = [
