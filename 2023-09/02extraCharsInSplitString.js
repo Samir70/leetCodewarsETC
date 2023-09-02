@@ -51,6 +51,8 @@ class Trie {
 var minExtraChar = function (s, dictionary) {
   let trie = new Trie()
   for (let word of dictionary) { trie.insert(word) }
+  // A set may be sufficient
+  // let dictSet = new Set(dictionary)
   let hash = {}
   const helper = (str) => {
     if (str === "") { return 0 }
@@ -65,6 +67,7 @@ var minExtraChar = function (s, dictionary) {
       let minWithoutSubstring = substr.length + helper(restOfStr)
       // console.log({ str, i, substr, restOfStr, minWithSubstr, minWithoutSubstring })
       out = Math.min(minWithSubstr, minWithoutSubstring, out)
+      if (!trie.startsWith(substr)) { break }
     }
     hash[str] = out;
     return out
