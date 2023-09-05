@@ -5,6 +5,19 @@ const listVals = head => {
         cur = cur.next;
     }
 }
+/**
+ * Initialization and Interweaving:
+        Traverse the original list.
+        For each node, create a corresponding new node and place it between the current node and the current node's next.
+
+ * Setting Random Pointers:
+        Traverse the interweaved list.
+        For each old node, set its corresponding new node's random pointer.
+
+ * Separating Lists:
+        Traverse the interweaved list again to separate the old and new lists.
+
+ */
 var copyRandomList = function(head) {
     let cur = head;
     let newHead = cur ? new Node(cur.val, null, null) : null;
