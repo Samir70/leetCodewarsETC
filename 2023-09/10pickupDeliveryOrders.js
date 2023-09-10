@@ -24,9 +24,7 @@ const multMod = (a, b) => {
 var countOrders = function (n) {
   let ways = 1;
   for (let i = 2; i <= n; i++) {
-    let actionsInPrevLevel = 2 * (i - 1)
-    let slotsForThisLevel = actionsInPrevLevel + 1
-    ways = multMod(ways, slotsForThisLevel);
+    ways = multMod(ways, 2 * i - 1);
     ways = multMod(ways, i)
   }
   return ways;
