@@ -12,7 +12,7 @@ var groupThePeople = function (groupSizes) {
         }
         group[groupSizes[i]].push(i)
     }
-    console.log(group);
+    // console.log(group);
     for (var size in group) {
         var s = Number(size);
         while (group[size].length > 0) {
