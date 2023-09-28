@@ -4,7 +4,7 @@
 // from May
 var sortArrayByParityPointers = function(A) {
     if (A.length < 2) {return A}
-    var startPointer = 0, endPointer = A.length-1;
+    let startPointer = 0, endPointer = A.length-1;
     while (startPointer < endPointer) {
         while (startPointer < endPointer && A[startPointer] % 2 === 0) {startPointer++}
         while (startPointer < endPointer && A[endPointer] % 2 === 1) {endPointer--}
