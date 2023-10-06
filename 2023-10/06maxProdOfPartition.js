@@ -3,22 +3,38 @@
  * @return {number}
  * find max product of partition (at least two pieces)
  */
-var integerBreak = function (n) {
-  if (n == 2) { return 1 }
-  if (n == 3) { return 2 }
-  if (n % 3 === 0) { return 3 ** (n / 3) }
-  let numTwos = Math.floor(n / 2), b = n % 2
-  let numThrees = 0
-  while (numTwos > 3) {
-    numTwos -= 3;
-    numThrees += 2
-  }
-  if (b === 1 && numTwos > 0) {
-    numTwos--; numThrees++
-  }
-  // console.log({ n, numTwos, numThrees, sum: 2 * numTwos + 3 * numThrees + b })
-  return 3 ** numThrees * 2 ** numTwos
-};
+const integerBreak = n => {
+  if (n < 4) {return n - 1}
+  if (n % 3 === 0) {return 3 ** (n / 3)}
+  if (n %3 === 1) {return 4 * (3 ** ((n - 4) / 3))}
+  if (n %3 === 2) {return 2 * (3 ** ((n - 2) / 3))}
+  return -1
+}
+// const integerBreak = n => {
+//   if (n < 4) {return n - 1}
+//   let ans = 1
+//   while (n > 4) {
+//     ans *= 3
+//     n -= 3
+//   }
+//   return ans * n
+// }
+// var integerBreak = function (n) {
+//   if (n == 2) { return 1 }
+//   if (n == 3) { return 2 }
+//   if (n % 3 === 0) { return 3 ** (n / 3) }
+//   let numTwos = Math.floor(n / 2), b = n % 2
+//   let numThrees = 0
+//   while (numTwos > 3) {
+//     numTwos -= 3;
+//     numThrees += 2
+//   }
+//   if (b === 1 && numTwos > 0) {
+//     numTwos--; numThrees++
+//   }
+//   // console.log({ n, numTwos, numThrees, sum: 2 * numTwos + 3 * numThrees + b })
+//   return 3 ** numThrees * 2 ** numTwos
+// };
 
 /**
  for (i = 2; i < 20; i++) {
