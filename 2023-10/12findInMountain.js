@@ -27,14 +27,14 @@ var findInMountainArray = function (target, mountainArr) {
     return itself > below && itself > above
   }
   let left = 0, right = n - 1;
+  // originally found peak as in ...\2023-07\25peakIndexMountainArray.js
+  // but this had 5 calls to .get (3 in isPeak and 2 here)
   while (left < right) {
     let mid = Math.floor((left + right) / 2)
-    if (isPeak(mid)) {
-      left = mid; right = mid;
-    } else if (mountainArr.get(mid - 1) < mountainArr.get(mid)) {
+    if (mountainArr.get(mid) < mountainArr.get(mid + 1)) {
       left = mid + 1
     } else {
-      right = mid - 1
+      right = mid
     }
   }
   let peak = left
