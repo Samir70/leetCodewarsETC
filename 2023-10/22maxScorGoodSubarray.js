@@ -3,39 +3,23 @@
  * @param {number} k
  * @return {number}
  */
+// now gets 92% and 100%
 var maximumScore = function (nums, k) {
-  let minElement = nums[k];
-  let minsToLeftAndRight = Array(nums.length)
-  let i = k;
-  while (i >= 0) {
-    minElement = Math.min(minElement, nums[i]);
-    minsToLeftAndRight[i] = minElement;
-    i--;
-  }
-  let j = k + 1;
-  minElement = nums[k];
-  while (j < nums.length) {
-    minElement = Math.min(minElement, nums[j]);
-    minsToLeftAndRight[j] = minElement;
-    j++;
-  }
-  // console.log(minsToLeftAndRight)
   let maxScore = nums[k];
-  minElement = nums[k], i = k, j = k;
+  let minElement = nums[k], i = k, j = k;
   while (i > 0 || j < nums.length - 1) {
-    let left = i > 0 ? minsToLeftAndRight[i - 1] : -Infinity
-    let right = j < nums.length - 1 ? minsToLeftAndRight[j + 1] : -Infinity
+    let left = i > 0 ? nums[i - 1] : -Infinity
+    let right = j < nums.length - 1 ? nums[j + 1] : -Infinity
     // console.log({ i, j, left, right, minElement })
-    // if (left === -Infinity && right === -Infinity) { break }
+    // left and right can't both be infinity
     if (left > right) {
-      i > 0 ? i-- : j++
+      i--;
       minElement = Math.min(minElement, left)
     } else {
-      j < nums.length - 1 ? j++ : i--
+      j++;
       minElement = Math.min(minElement, right)
     }
     let subArraySize = j - i + 1;
-    minElement = Math.min(minsToLeftAndRight[i], minsToLeftAndRight[j])
     maxScore = Math.max(maxScore, minElement * subArraySize)
   }
   return maxScore
