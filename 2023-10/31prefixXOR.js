@@ -3,13 +3,19 @@
  * @return {number[]}
  */
 const findArray = pref => {
-  // beats 70% and 14%
-  let arr = [...pref]
-  for (let i = 1; i < pref.length; i++) {
-    arr[i] = pref[i - 1] ^ pref[i]
+  for (let i = pref.length - 1; i > 0; i--) {
+    pref[i] ^= pref[i - 1]
   }
-  return arr
+  return pref
 }
+// const findArray = pref => {
+//   // beats 70% and 14%
+//   let arr = [...pref]
+//   for (let i = 1; i < pref.length; i++) {
+//     arr[i] = pref[i - 1] ^ pref[i]
+//   }
+//   return arr
+// }
 // const findArray = pref => {
 //   // beats 62% and 39% on time and memory
 //   let out = [];
