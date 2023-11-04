@@ -6,15 +6,20 @@
  */
 var getLastMoment = function (n, left, right) {
   // ants switch directions when they meet, but who cares? They don't need names
-  let lm = 0;
-  for (let ant of left) {
-    lm = Math.max(lm, ant)
-  }
-  for (let ant of right) {
-    lm = Math.max(lm, n - ant)
-  }
-  return lm
+  return Math.max(...left, n - Math.min(...right));
+  // shorter, but slower. But not by much
 };
+// var getLastMoment = function (n, left, right) {
+//   // ants switch directions when they meet, but who cares? They don't need names
+//   let lm = 0;
+//   for (let ant of left) {
+//     lm = Math.max(lm, ant)
+//   }
+//   for (let ant of right) {
+//     lm = Math.max(lm, n - ant)
+//   }
+//   return lm
+// };
 
 const tests = [
   { args: [4, [4, 3], [0, 1]], out: 4 },
