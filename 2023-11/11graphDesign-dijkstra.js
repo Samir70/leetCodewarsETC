@@ -80,6 +80,7 @@ Graph.prototype.addEdge = function (edge) {
 * @return {number}
 */
 Graph.prototype.shortestPath = function (node1, node2) {
+  // using Dijkstra
   let costToReachNode = Array(this.n).fill(Infinity);
   let nodesWithGivenCost = { 0: [node1] }
   costToReachNode[node1] = 0;
