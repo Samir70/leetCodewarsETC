@@ -3,23 +3,26 @@
  * @return {string}
  * gives string with vowels sorted by ASCII code, so capitals first
  */
-const vowels = {}
-let vList = [..."AEIOUaeiou"]
-vList.forEach((e, i) => {
-  vowels[e] = i
-});
-// console.log(vowels)
+const sortedVowels = "AEIOUaeiou"
+// using counting sort is faster since string length is far greater than 10
 var sortVowels = function (s) {
-  let vs = s.match(/[AEIOU]/gi)
-  // console.log(vs)
-  if (vs === null) { return s }
-  vs = vs.sort((a, b) => vowels[a] - vowels[b])
-  let ans = "", pointer = 0
+  let counter = {}
+  for (let v of sortedVowels) { counter[v] = 0 }
   for (let letter of s) {
-    if (vowels[letter] === undefined) {
-      ans += letter
+    if (counter[letter] === undefined) { continue }
+    counter[letter]++
+  }
+  let vowelsOfS = ''
+  for (let v of sortedVowels) {
+    vowelsOfS += Array(counter[v]).fill(v).join("")
+  }
+  // console.log({counter, vowelsOfS})
+  let ans = '', pointer = 0;
+  for (let letter of s) {
+    if (counter[letter]) {
+      ans += vowelsOfS[pointer++]
     } else {
-      ans += vs[pointer++]
+      ans += letter
     }
   }
   return ans
