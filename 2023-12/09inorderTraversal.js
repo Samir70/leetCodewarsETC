@@ -1,4 +1,4 @@
-const trees = require('./trees')
+const trees = require('../Trees/trees')
 
 /**
  * Definition for a binary tree node.
@@ -8,7 +8,7 @@ const trees = require('./trees')
  *     this.right = (right===undefined ? null : right)
  * }
  */
-var inorderTraversal = function(root) {
+var inorderTraversalOld = function(root) {
     if (root === null) {return []}
     var inorder = [];
     var stack = [root];
