@@ -13,6 +13,11 @@ var maxScore = function (s) {
     score += c === "0" ? 1 : -1
     max = Math.max(max, score)
   }
+  // faster  (but not less memory) is:
+  // for (let c = 1; c < s.length - 1; c++) {
+  //   score += s[c] === "0" ? 1 : -1
+  //   max = Math.max(max, score)
+  // }
   return max
 };
 
