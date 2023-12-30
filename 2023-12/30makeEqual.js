@@ -2,16 +2,30 @@
  * @param {string[]} words
  * @return {boolean}
  */
+// var makeEqual = function (words) {
+//   let tally = {}
+//   for (let word of words) {
+//     for (let c of word) {
+//       tally[c] = (tally[c] || 0) + 1
+//     }
+//   }
+//   let n = words.length
+//   for (let c of Object.keys(tally)) {
+//     if (tally[c] % n !== 0) {return false}
+//   }
+//   return true
+// };
 var makeEqual = function (words) {
-  let tally = {}
+  let tally = Array(26).fill(0)
   for (let word of words) {
     for (let c of word) {
-      tally[c] = (tally[c] || 0) + 1
+      let i = c.charCodeAt(0) - "a".charCodeAt(0)
+      tally[i]++
     }
   }
   let n = words.length
-  for (let c of Object.keys(tally)) {
-    if (tally[c] % n !== 0) {return false}
+  for (let count of tally) {
+    if (count % n !== 0) {return false}
   }
   return true
 };
