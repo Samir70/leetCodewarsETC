@@ -29,7 +29,7 @@ var kInversePairs = function (n, k) {
         dpCur = [...dpNext]
         // console.log(row, dpCur)
     }
-    return dpCur[k] % BigInt(base)
+    return Number(dpCur[k] % BigInt(base))
 };
 
 /**
@@ -41,24 +41,31 @@ var kInversePairs = function (n, k) {
  */
 
 const tests = [
-    { n: 3, k: 0, out: 1 },
-    { n: 5, k: 1, out: 4 },
-    { n: 5, k: 2, out: 9 },
-    { n: 5, k: 10, out: 1 },
-    { n: 10, k: 2, out: 44 },
-    { n: 10, k: 3, out: 155 },
-    { n: 10, k: 4, out: 440 },
-    { n: 10, k: 5, out: 1068 },
-    { n: 10, k: 6, out: 2298 },
-    { n: 10, k: 7, out: 4489 },
-    { n: 10, k: 8, out: 8095 },
-    { n: 10, k: 9, out: 13640 },
-    { n: 10, k: 20, out: 230131 },
-    { n: 10, k: 45, out: 1 },
-    { n: 10, k: 46, out: 0 },
-    { n: 1000, k: 1000, out: 663677020 }
+    { args: [3, 0], out: 1 },
+    { args: [5, 1], out: 4 },
+    { args: [5, 2], out: 9 },
+    { args: [5, 10], out: 1 },
+    { args: [10, 2], out: 44 },
+    { args: [10, 3], out: 155 },
+    { args: [10, 4], out: 440 },
+    { args: [10, 5], out: 1068 },
+    { args: [10, 6], out: 2298 },
+    { args: [10, 7], out: 4489 },
+    { args: [10, 8], out: 8095 },
+    { args: [10, 9], out: 13640 },
+    { args: [10, 20], out: 230131 },
+    { args: [10, 45], out: 1 },
+    { args: [10, 46], out: 0 },
+    { args: [1000, 1000], out: 663677020 }
 ];
 
-tests.forEach((t, i) => console.log(
-    'test', i, kInversePairs(t.n, t.k) == t.out
-))
+tests.forEach((t, i) => {
+  let res = kInversePairs(...t.args);
+  if (res !== t.out) {
+    console.log(
+      'test', i, 'should be', t.out, ' got ', res
+    )
+  } else {
+    console.log('test', i, 'was correct!')
+  }
+});
