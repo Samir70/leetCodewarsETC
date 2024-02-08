@@ -14,6 +14,7 @@ const numSquares = n => {
    * Legendre’s Three-Square Theorem, 
    * which states that NumSquares(n) cannot be 1, 2, or 3 
    * if n can be expressed as n = 4^a * (8*b + 7)
+   * 2 or 3 is enough for the rest
    * Check if we need 4
    */
   var m = n;
