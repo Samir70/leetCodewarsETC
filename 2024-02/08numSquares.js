@@ -24,9 +24,16 @@ const numSquares = n => {
 }
 
 var tests = [
+  { args: [17], out: 2 },
+  { args: [18], out: 2 },
+  { args: [27], out: 3 },
+  { args: [39], out: 4 },
   { args: [41], out: 2 },
+  { args: [42], out: 3 },
+  { args: [43], out: 3 }, // 9 + 9 + 25
   { args: [16], out: 1 },
   { args: [32], out: 2 },
+  { args: [7], out: 4 },
   { args: [8645581], out: 3 },
   { args: [1673342], out: 3 },
   { args: [5307031], out: 4 },
