@@ -21,6 +21,7 @@ var findAllPeople = function (n, meetings, firstPerson) {
     let newQueue = []
     while (queue.length > 0) {
       let [spreader, time] = queue.pop()
+      if (learntSecretAtTimeT[spreader] < time) { continue }
       if (meetsAtT[spreader] === undefined) { continue }
       let events = meetsAtT[spreader].sort((a, b) => a[1] - b[1])
       // console.log({spreader, events, since: learntSecretAtTimeT[spreader]})
