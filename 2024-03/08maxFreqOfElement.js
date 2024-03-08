@@ -4,16 +4,13 @@
  */
 var maxFrequencyElements = function (nums) {
   let tally = {}
-  let max = 0
+  let max = 0, countOfMax = 0
   for (let n of nums) {
     tally[n] = (tally[n] || 0) + 1
-    if (tally[n] > max) { max = tally[n] }
+    if (tally[n] > max) { max = tally[n]; count = 0 }
+    if (tally[n] === max) { count++ }
   }
-  let sum = 0
-  for (let val of Object.keys(tally)) {
-    sum += tally[val] === max ? max : 0
-  }
-  return sum
+  return max * count
 };
 
 const tests = [
