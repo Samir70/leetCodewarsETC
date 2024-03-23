@@ -1,4 +1,4 @@
-const { listify, unlist } = require('./listify');
+const { listify, unlist } = require('../Lists/listify');
 
 var reorderList = function (head) {
     if (head === null || head.next === null) { return head }
