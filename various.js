@@ -47,3 +47,32 @@ var finalValueAfterOperations = function (operations) {
   return operations.map(op => op.indexOf("+") === -1 ? -1 : 1)
     .reduce((a, c) => a + c, 0)
 };
+
+
+
+/**
+ * @param {number} n
+ * @param {number} m
+ * @return {number}
+ * https://leetcode.com/problems/divisible-and-non-divisible-sums-difference/
+ */
+var differenceOfSums = function (n, m) {
+  let [divSum, notDivSum] = [0, 0]
+  for (let i = 1; i <= n; i++) {
+    i % m === 0 ? divSum += i : notDivSum += i
+  }
+  return notDivSum - divSum
+};
+/**
+ * Beats nearly everybody:
+ */
+var differenceOfSums = function (n, m) {
+  if (m >= n) {
+    return m > n ? n * (n + 1) / 2 : n * (n - 3) / 2
+  }
+  if (m === 1) { return -n * (n + 1) / 2 }
+  let t = (Math.floor(n / m))
+  // t elements of m times table sum to m * Tri(t)
+  // 2 * m * t(t + 1) / 2 = m * t(t + 1)
+  return (n * (n + 1) / 2) - (m * t * (t + 1))
+};
