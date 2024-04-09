@@ -22,8 +22,10 @@ var mySqrt = function (x) {
  * @return {number}
  * https://leetcode.com/problems/smallest-even-multiple/
  */
+// Go from 53 to 49ms
 var smallestEvenMultiple = function (n) {
-  return n % 2 ? 2 * n : n
+  // return n % 2 ? 2 * n : n
+  return n % 2 ? n << 1 : n
 };
 
 
