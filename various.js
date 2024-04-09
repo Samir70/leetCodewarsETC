@@ -28,6 +28,16 @@ var smallestEvenMultiple = function (n) {
   return n % 2 ? n << 1 : n
 };
 
+/**
+ * @param {number} num
+ * @return {number}
+ * https://leetcode.com/problems/minimum-sum-of-four-digit-number-after-splitting-digits/
+ */
+var minimumSum = function(num) {
+  let digits = [...''+num].sort()
+  return Number(digits[0] + digits[2]) + Number(digits[1] + digits[3])
+};
+
 
 /**
  * @param {Promise} promise1
