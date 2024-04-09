@@ -17,6 +17,15 @@ var mySqrt = function (x) {
   return left
 };
 
+/**
+ * @param {number} n
+ * @return {number}
+ * https://leetcode.com/problems/smallest-even-multiple/
+ */
+var smallestEvenMultiple = function (n) {
+  return n % 2 ? 2 * n : n
+};
+
 
 /**
  * @param {Promise} promise1
