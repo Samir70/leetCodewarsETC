@@ -87,13 +87,46 @@ var differenceOfSums = function (n, m) {
 var maxRepeating = function (sequence, word) {
   let left = 0, right = Math.ceil(sequence.length / word.length)
   while (left < right) {
-      let mid = Math.ceil((left + right) / 2)
-      let long = Array(mid).fill(word).join("")
-      if (sequence.includes(long)) {
-          left = mid
-      } else {
-          right = mid - 1
-      }
+    let mid = Math.ceil((left + right) / 2)
+    let long = Array(mid).fill(word).join("")
+    if (sequence.includes(long)) {
+      left = mid
+    } else {
+      right = mid - 1
+    }
   }
   return left
+};
+
+/**
+ * @param {string[]} words
+ * @param {number[]} groups
+ * @return {string[]}
+ * https://leetcode.com/problems/longest-unequal-adjacent-groups-subsequence-i/
+ */
+// DP 61ms
+var getLongestSubsequence = function (words, groups) {
+  let longestEndingWith0 = groups[0] === 0 ? [words[0]] : []
+  let longestEndingWith1 = groups[0] === 1 ? [words[0]] : []
+  for (let i = 1; i < words.length; i++) {
+    let [w, g] = [words[i], groups[i]]
+    if (g === 0) {
+      longestEndingWith0 = [...longestEndingWith1, w]
+    } else {
+      longestEndingWith1 = [...longestEndingWith0, w]
+    }
+  }
+  return longestEndingWith0.length > longestEndingWith1.length ? longestEndingWith0 : longestEndingWith1
+};
+
+// Greedy 59ms
+var getLongestSubsequence = function (words, groups) {
+  let cur = groups[0]
+  let out = [words[0]]
+  for (let i = 1; i < words.length; i++) {
+    if (groups[i] === cur) { continue }
+    out.push(words[i])
+    cur = groups[i]
+  }
+  return out
 };
