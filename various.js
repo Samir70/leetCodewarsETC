@@ -76,3 +76,24 @@ var differenceOfSums = function (n, m) {
   // 2 * m * t(t + 1) / 2 = m * t(t + 1)
   return (n * (n + 1) / 2) - (m * t * (t + 1))
 };
+
+/**
+ * @param {string} sequence
+ * @param {string} word
+ * @return {number}
+ * https://leetcode.com/problems/maximum-repeating-substring/
+ */
+// binary search, gets beaten by brute force when input is limted to len 100
+var maxRepeating = function (sequence, word) {
+  let left = 0, right = Math.ceil(sequence.length / word.length)
+  while (left < right) {
+      let mid = Math.ceil((left + right) / 2)
+      let long = Array(mid).fill(word).join("")
+      if (sequence.includes(long)) {
+          left = mid
+      } else {
+          right = mid - 1
+      }
+  }
+  return left
+};
