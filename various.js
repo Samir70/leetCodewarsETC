@@ -151,3 +151,41 @@ var getLongestSubsequence = function (words, groups) {
   }
   return out
 };
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ * number of pairs i != j where nums[i] + nums[j] < target
+ * https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
+ */
+var countPairs = function(nums, target) {
+  nums.sort((a, b) => a - b)
+  let left = 0, right = nums.length - 1, count = 0
+  while (left < right) {
+      if (nums[left] + nums[right] >= target) {
+          right--
+      } else {
+          count += right - left
+          left++
+      }
+  }
+  return count
+};
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ * https://leetcode.com/problems/minimum-number-game/
+ * remove mins from nums: a, b
+ * append to arr: b, a
+ * rpt until nums empty
+ */
+var numberGame = function(nums) {
+  nums.sort((a, b) => a - b)
+  for (let i = 0; i < nums.length; i += 2) {
+      [nums[i], nums[i+1]] = [nums[i+1], nums[i]]
+  }
+  return nums
+};
