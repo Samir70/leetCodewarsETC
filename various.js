@@ -32,13 +32,13 @@ var smallestEvenMultiple = function (n) {
  * @param {character[]} s
  * @return {void} Do not return anything, modify s in-place instead.
  */
-var reverseString = function(s) {    
+var reverseString = function (s) {
   let left = 0, right = s.length - 1
   while (left < right) {
-      [s[left], s[right]] = [s[right], s[left]]
-      // console.log({s, left, right})
-      left++; right--
-  }    
+    [s[left], s[right]] = [s[right], s[left]]
+    // console.log({s, left, right})
+    left++; right--
+  }
 };
 
 /**
@@ -46,8 +46,8 @@ var reverseString = function(s) {
  * @return {number}
  * https://leetcode.com/problems/minimum-sum-of-four-digit-number-after-splitting-digits/
  */
-var minimumSum = function(num) {
-  let digits = [...''+num].sort()
+var minimumSum = function (num) {
+  let digits = [...'' + num].sort()
   return Number(digits[0] + digits[2]) + Number(digits[1] + digits[3])
 };
 
@@ -173,16 +173,16 @@ var getLongestSubsequence = function (words, groups) {
  * number of pairs i != j where nums[i] + nums[j] < target
  * https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
  */
-var countPairs = function(nums, target) {
+var countPairs = function (nums, target) {
   nums.sort((a, b) => a - b)
   let left = 0, right = nums.length - 1, count = 0
   while (left < right) {
-      if (nums[left] + nums[right] >= target) {
-          right--
-      } else {
-          count += right - left
-          left++
-      }
+    if (nums[left] + nums[right] >= target) {
+      right--
+    } else {
+      count += right - left
+      left++
+    }
   }
   return count
 };
@@ -195,10 +195,24 @@ var countPairs = function(nums, target) {
  * append to arr: b, a
  * rpt until nums empty
  */
-var numberGame = function(nums) {
+var numberGame = function (nums) {
   nums.sort((a, b) => a - b)
   for (let i = 0; i < nums.length; i += 2) {
-      [nums[i], nums[i+1]] = [nums[i+1], nums[i]]
+    [nums[i], nums[i + 1]] = [nums[i + 1], nums[i]]
   }
   return nums
+};
+
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+var heightChecker = function (heights) {
+  var original = [...heights];
+  heights.sort((a, b) => a - b);
+  var count = 0;
+  for (var i in heights) {
+    if (original[i] !== heights[i]) { count++ }
+  }
+  return count
 };
