@@ -1,5 +1,9 @@
 import pandas as pd
 
+# https://leetcode.com/problems/display-the-first-three-rows/
+def selectFirstRows(employees: pd.DataFrame) -> pd.DataFrame:
+    return employees[0:3]
+
 # https://leetcode.com/problems/create-a-new-column/
 def createBonusColumn(employees: pd.DataFrame) -> pd.DataFrame:
     employees['bonus'] = employees['salary'] * 2
