@@ -1,4 +1,8 @@
-var convertBST = function (root) {
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var bstToGst = function (root) {
   let sum = 0;
   let stack = [];
   let cur = root;
