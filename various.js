@@ -234,3 +234,16 @@ var threeConsecutiveOdds = function (arr) {
   }
   return false
 };
+
+
+/**
+ * @param {number} n
+ * @param {number} time
+ * @return {number}
+ * where does the pillow stop, being passed back and forth along line 1..n?
+ */
+var passThePillow = function (n, time) {
+  let base = n - 1
+  let t = time % (base * 2)
+  return t <= base ? 1 + t : n - (t % base)
+};
