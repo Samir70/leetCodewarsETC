@@ -3,26 +3,46 @@
  * @return {string}
  */
 var reverseParentheses = function (s) {
-  let ans = ""
+  let ans = []
   let stack = []
   for (let c of s) {
-    if (c === ")") {
-      let mid = ""
-      while (stack[stack.length - 1] !== "(") {
-        mid += stack.pop()
-        // console.log({ stack, ans })
+    if (c === "(") {
+      stack.push(ans.length)
+    } else if (c === ")") {
+      let [left, right] = [stack.pop(), ans.length - 1]
+      while (left < right) {
+        let temp = ans[left]
+        ans[left] = ans[right]
+        ans[right] = temp
+        left++; right--
       }
-      stack.pop()
-      for (let m of mid) {
-        stack.push(m)
-      }
-      // console.log("final stack:", stack)
     } else {
-      stack.push(c)
+      ans.push(c)
     }
   }
-  return stack.join("")
+  return ans.join("")
 };
+// var reverseParentheses = function (s) {
+//   let ans = ""
+//   let stack = []
+//   for (let c of s) {
+//     if (c === ")") {
+//       let mid = ""
+//       while (stack[stack.length - 1] !== "(") {
+//         mid += stack.pop()
+//         // console.log({ stack, ans })
+//       }
+//       stack.pop()
+//       for (let m of mid) {
+//         stack.push(m)
+//       }
+//       // console.log("final stack:", stack)
+//     } else {
+//       stack.push(c)
+//     }
+//   }
+//   return stack.join("")
+// };
 
 const tests = [
   { args: ["(abcd)"], out: "dcba" },
