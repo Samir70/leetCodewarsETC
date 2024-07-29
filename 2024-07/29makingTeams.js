@@ -3,19 +3,19 @@
  * @return {number}
  */
 var numTeams = function (rating) {
-  let incPairs = Array(rating.length).fill(0)
-  let decPairs = Array(rating.length).fill(0)
-  for (let i = 1; i < rating.length; i++) {
-    for (let j = i + 1; j < rating.length; j++) {
-      rating[j] > rating[i] ? incPairs[i]++ : decPairs[i]++
-    }
-  }
   let count = 0
-  // console.log({ incPairs, decPairs })
-  for (let i = 0; i < rating.length - 2; i++) {
-    for (let j = i + 1; j < rating.length; j++) {
-      count += rating[i] < rating[j] ? incPairs[j] : decPairs[j]
+  for (let mid = 1; mid < rating.length; mid++) {
+    let [leftSmaller, leftLarger] = [0, 0]
+    let [rightSmaller, rightLarger] = [0, 0]
+    for (let left = 0; left < mid; left++) {
+      rating[left] < rating[mid] ? leftSmaller++ : leftLarger++
     }
+    for (let right = mid + 1; right < rating.length; right++) {
+      rating[right] < rating[mid] ? rightSmaller++ : rightLarger++
+    }
+    // console.log({ mid, leftSmaller, rightLarger, leftLarger, rightSmaller })
+    count += leftSmaller * rightLarger
+    count += leftLarger * rightSmaller
   }
   return count
 };
