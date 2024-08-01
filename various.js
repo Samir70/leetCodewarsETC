@@ -247,3 +247,13 @@ var passThePillow = function (n, time) {
   let t = time % (base * 2)
   return t <= base ? 1 + t : n - (t % base)
 };
+
+/**
+ * @param {string[]} details
+ * @return {number}
+ * https://leetcode.com/problems/number-of-senior-citizens/
+ * 01/08/2024
+ */
+var countSeniors = function (details) {
+  return details.map(d => Number(d[11] + d[12])).filter(d => d > 60).length
+};
