@@ -247,3 +247,9 @@ Must do to master the binary search on answer:
     https://leetcode.com/problems/sell-diminishing-valued-colored-balls/
     https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/
     https://leetcode.com/problems/divide-chocolate/ <-- this one is gold!!! (hard)
+
+
+
+#################
+Tarjan's algorithm
+  https://leetcode.com/problems/minimum-number-of-days-to-disconnect-island/editorial/
