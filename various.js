@@ -257,3 +257,14 @@ var passThePillow = function (n, time) {
 var countSeniors = function (details) {
   return details.map(d => Number(d[11] + d[12])).filter(d => d > 60).length
 };
+
+/**
+ * @param {number} num
+ * @return {number}
+ * https://leetcode.com/problems/number-complement/
+ */
+var findComplement = function (num) {
+  var power2 = 1;
+  while (power2 - 1 < num) { power2 *= 2 }
+  return power2 - 1 - num
+};
