@@ -268,3 +268,21 @@ var findComplement = function (num) {
   while (power2 - 1 < num) { power2 *= 2 }
   return power2 - 1 - num
 };
+
+/**
+ * @param {number[]} original
+ * @param {number} m
+ * @param {number} n
+ * @return {number[][]}
+ */
+var construct2DArray = function (original, m, n) {
+  if (m * n !== original.length) { return [] }
+  let out = []
+  let start = 0
+  for (let r = 0; r < m; r++) {
+    // out.push(original.slice(r * n, (r + 1) * n))
+    out.push(original.slice(start, start + n))
+    start += n
+  }
+  return out
+};
