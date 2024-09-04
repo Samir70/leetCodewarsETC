@@ -10,12 +10,14 @@ var robotSim = function (commands, obstacles) {
   let dir = 0
   let loc = [0, 0], maxDist = 0
   const dist = place => place.map(x => x * x).reduce((a, c) => a + c)
-  let rowObsts = {}, colObsts = {}
+  let hash = new Set()
+  // let rowObsts = {}, colObsts = {}
   for (let [c, r] of obstacles) {
-    if (rowObsts[r] === undefined) { rowObsts[r] = new Set() }
-    if (colObsts[c] === undefined) { colObsts[c] = new Set() }
-    rowObsts[r].add(c)
-    colObsts[c].add(r)
+    // if (rowObsts[r] === undefined) { rowObsts[r] = new Set() }
+    // if (colObsts[c] === undefined) { colObsts[c] = new Set() }
+    // rowObsts[r].add(c)
+    // colObsts[c].add(r)
+    hash.add([r, c].join(","))
   }
   for (let com of commands) {
     if (com === -1) {
@@ -25,10 +27,11 @@ var robotSim = function (commands, obstacles) {
     } else {
       while (com > 0) {
         com--
-        let newLoc = [loc[0] + dirs[dir][0], loc[1] + dirs[dir][1]]
-        if (rowObsts[newLoc[0]] && rowObsts[newLoc[0]].has(newLoc[1])) { break }
-        if (colObsts[newLoc[1]] && colObsts[newLoc[1]].has(newLoc[0])) { break }
-        loc = [...newLoc]
+        let [r, c] = [loc[0] + dirs[dir][0], loc[1] + dirs[dir][1]]
+        if (hash.has([r, c].join(","))) { break }
+        // if (rowObsts[newLoc[0]] && rowObsts[newLoc[0]].has(newLoc[1])) { break }
+        // if (colObsts[newLoc[1]] && colObsts[newLoc[1]].has(newLoc[0])) { break }
+        loc = [r, c]
       }
       maxDist = Math.max(maxDist, dist(loc))
     }
