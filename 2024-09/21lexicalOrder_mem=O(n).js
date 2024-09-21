@@ -3,20 +3,29 @@
  * @return {number[]}
  * n is less than 5*10^4
  */
+let digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+const addChildren = (h, n) => {
+  for (let d of digits) {
+    let child = h.val * 10 + d
+    if (child === 0) { continue }
+    if (child > n) {
+      break
+    }
+    h.children.push({ val: child, children: [] })
+  }
+}
 var lexicalOrder = function (n) {
+  let head = { val: 0, children: [] }
   let out = []
-  let cur = 1
-  for (let i = 1; i <= n; i++) {
-    out.push(cur)
-    if (cur * 10 <= n) {
-      cur *= 10
-    } else {
-      while (cur % 10 === 9 || cur >= n) {
-        cur = Math.floor(cur / 10)
-      }
-      cur++
+  const dfs = h => {
+    addChildren(h, n)
+    // console.log(h)
+    for (let child of h.children) {
+      out.push(child.val)
+      dfs(child)
     }
   }
+  dfs(head, n)
   return out
 };
 
