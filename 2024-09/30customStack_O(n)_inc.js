@@ -4,7 +4,6 @@
 var CustomStack = function (maxSize) {
   this.maxSize = maxSize
   this.arr = []
-  this.incArray = Array(maxSize).fill(0)
 };
 
 /** 
@@ -22,12 +21,8 @@ CustomStack.prototype.push = function (x) {
  * @return {number}
  */
 CustomStack.prototype.pop = function () {
-  if (this.arr.length === 0) { return -1 }
-  let i = this.arr.length - 1
-  let val = this.arr.pop() + this.incArray[i]
-  if (i > 0) { this.incArray[i - 1] += this.incArray[i] }
-  this.incArray[i] = 0
-  return val
+  // console.log({ arr: this.arr, len: this.arr.length, max: this.maxSize })
+  return this.arr.length > 0 ? this.arr.pop() : -1
 };
 
 /** 
@@ -36,8 +31,10 @@ CustomStack.prototype.pop = function () {
  * @return {void}
  */
 CustomStack.prototype.increment = function (k, val) {
-  let last = Math.min(this.arr.length, k) - 1
-  this.incArray[last] += val
+  let last = Math.min(this.arr.length, k)
+  for (let i = 0; i < last; i++) {
+    this.arr[i] += val
+  }
   return null
 };
 
